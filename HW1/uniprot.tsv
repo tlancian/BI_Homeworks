@@ -1,0 +1,91 @@
+Entry	Entry name	Status	Protein names	Gene names	Organism	Length
+Q99218	AMELY_HUMAN	Amelogenin, Y isoform	AMELY AMGL AMGY	FUNCTION: Plays a role in biomineralization. Seems to regulate the formation of crystallites during the secretory stage of tooth enamel development. Thought to play a major role in the structural organization and mineralization of developing enamel.
+
+O14599	VCY2_HUMAN	Testis-specific basic protein Y 2 (Basic charge, Y-linked 2) (Variably charged protein Y 2)	BPY2 BPY2A VCY2 VCY2A; BPY2B VCY2B; BPY2C VCY2C	
+
+O14599	VCY2_HUMAN	Testis-specific basic protein Y 2 (Basic charge, Y-linked 2) (Variably charged protein Y 2)	BPY2 BPY2A VCY2 VCY2A; BPY2B VCY2B; BPY2C VCY2C	
+
+O14599	VCY2_HUMAN	Testis-specific basic protein Y 2 (Basic charge, Y-linked 2) (Variably charged protein Y 2)	BPY2 BPY2A VCY2 VCY2A; BPY2B VCY2B; BPY2C VCY2C	
+
+Q9Y6F8	CDY1_HUMAN	Testis-specific chromodomain protein Y 1 (EC 2.3.1.48)	CDY1 CDY1A; CDY1B	FUNCTION: Has histone acetyltransferase activity, with a preference for histone H4. {ECO:0000269|PubMed:12072557}.
+
+Q9Y6F8	CDY1_HUMAN	Testis-specific chromodomain protein Y 1 (EC 2.3.1.48)	CDY1 CDY1A; CDY1B	FUNCTION: Has histone acetyltransferase activity, with a preference for histone H4. {ECO:0000269|PubMed:12072557}.
+
+Q9Y6F7	CDY2_HUMAN	Testis-specific chromodomain protein Y 2 (EC 2.3.1.48)	CDY2A CDY2; CDY2B	FUNCTION: May have histone acetyltransferase activity. {ECO:0000250}.
+
+Q9Y6F7	CDY2_HUMAN	Testis-specific chromodomain protein Y 2 (EC 2.3.1.48)	CDY2A CDY2; CDY2B	FUNCTION: May have histone acetyltransferase activity. {ECO:0000250}.
+
+Q9NQZ3	DAZ1_HUMAN	Deleted in azoospermia protein 1	DAZ1 DAZ SPGY	FUNCTION: RNA-binding protein that plays an essential role in spermatogenesis. May act by binding to the 3'-UTR of mRNAs and regulating their translation. Promotes germ-cell progression to meiosis and formation of haploid germ cells. {ECO:0000269|PubMed:19865085}.
+
+Q13117	DAZ2_HUMAN	Deleted in azoospermia protein 2	DAZ2	FUNCTION: RNA-binding protein that plays an essential role in spermatogenesis. May act by binding to the 3'-UTR of mRNAs and regulating their translation.
+
+Q9NR90	DAZ3_HUMAN	Deleted in azoospermia protein 3	DAZ3	FUNCTION: RNA-binding protein that plays an essential role in spermatogenesis. May act by binding to the 3'-UTR of mRNAs and regulating their translation.
+
+Q86SG3	DAZ4_HUMAN	Deleted in azoospermia protein 4	DAZ4	FUNCTION: RNA-binding protein that plays an essential role in spermatogenesis. May act by binding to the 3'-UTR of mRNAs and regulating their translation.
+
+O15523	DDX3Y_HUMAN	ATP-dependent RNA helicase DDX3Y (EC 3.6.4.13) (DEAD box protein 3, Y-chromosomal)	DDX3Y DBY	FUNCTION: Probable ATP-dependent RNA helicase. May play a role in spermatogenesis.
+
+O14602	IF1AY_HUMAN	Eukaryotic translation initiation factor 1A, Y-chromosomal (eIF-1A Y isoform) (Eukaryotic translation initiation factor 4C) (eIF-4C)	EIF1AY	FUNCTION: Seems to be required for maximal rate of protein biosynthesis. Enhances ribosome dissociation into subunits and stabilizes the binding of the initiator Met-tRNA(I) to 40 S ribosomal subunits (By similarity). {ECO:0000250}.
+
+Q96LI6	HSFY1_HUMAN	Heat shock transcription factor, Y-linked (Heat shock transcription factor 2-like protein) (HSF2-like)	HSFY1 HSF2L HSFY; HSFY2 HSF2L HSFY	
+
+Q96LI6	HSFY1_HUMAN	Heat shock transcription factor, Y-linked (Heat shock transcription factor 2-like protein) (HSF2-like)	HSFY1 HSF2L HSFY; HSFY2 HSF2L HSFY	
+
+Q9BY66	KDM5D_HUMAN	Lysine-specific demethylase 5D (EC 1.14.11.-) (Histocompatibility Y antigen) (H-Y) (Histone demethylase JARID1D) (Jumonji/ARID domain-containing protein 1D) (Protein SmcY)	KDM5D HY HYA JARID1D KIAA0234 SMCY	FUNCTION: Histone demethylase that specifically demethylates 'Lys-4' of histone H3, thereby playing a central role in histone code. Does not demethylate histone H3 'Lys-9', H3 'Lys-27', H3 'Lys-36', H3 'Lys-79' or H4 'Lys-20'. Demethylates trimethylated and dimethylated but not monomethylated H3 'Lys-4'. May play a role in spermatogenesis. Involved in transcriptional repression of diverse metastasis-associated genes; in this function seems to cooperate with ZMYND8. Suppresses prostate cancer cell invasion. Regulates androgen receptor (AR) transcriptional activity by demethylating H3K4me3 active transcription marks. {ECO:0000269|PubMed:17320160, ECO:0000269|PubMed:17320162, ECO:0000269|PubMed:17351630, ECO:0000269|PubMed:26747897, ECO:0000269|PubMed:27185910, ECO:0000269|PubMed:27427228, ECO:0000269|PubMed:27477906}.
+
+Q8NFZ3	NLGNY_HUMAN	Neuroligin-4, Y-linked (Neuroligin Y)	NLGN4Y KIAA0951	FUNCTION: Putative neuronal cell surface protein involved in cell-cell-interactions.
+
+Q9BZA8	PC11Y_HUMAN	Protocadherin-11 Y-linked (Protocadherin-11) (Protocadherin on the Y chromosome) (PCDH-Y) (Protocadherin prostate cancer) (Protocadherin-PC) (Protocadherin-22)	PCDH11Y PCDH11 PCDH22 PCDHY	FUNCTION: Potential calcium-dependent cell-adhesion protein.
+
+Q9H606	PRORY_HUMAN	Proline-rich protein, Y-linked	PRORY CYorf17	
+
+O14603	PRY_HUMAN	PTPN13-like protein, Y-linked (Testis-specific PTP-BL-related Y protein)	PRY PRY1 PTPN13LY; PRY2 PTPN13LY2; PRYP3; PRYP4	
+
+O14603	PRY_HUMAN	PTPN13-like protein, Y-linked (Testis-specific PTP-BL-related Y protein)	PRY PRY1 PTPN13LY; PRY2 PTPN13LY2; PRYP3; PRYP4	
+
+P0DJD3	RBY1A_HUMAN	RNA-binding motif protein, Y chromosome, family 1 member A1 (RNA-binding motif protein 1) (RNA-binding motif protein 2) (Y chromosome RNA recognition motif 1) (hRBMY)	RBMY1A1 RBM1 RBM2 YRRM1 YRRM2	FUNCTION: RNA-binding protein involved in pre-mRNA splicing. Required for sperm development. Acts additively with TRA2B to promote exon 7 inclusion of the survival motor neuron SMN. Binds non-specifically to mRNAs. {ECO:0000269|PubMed:12165565, ECO:0000269|PubMed:8269511}.
+
+A6NDE4	RBY1B_HUMAN	RNA-binding motif protein, Y chromosome, family 1 member B	RBMY1B	FUNCTION: RNA-binding protein which may be involved in spermatogenesis. Required for sperm development, possibly by participating in pre-mRNA splicing in the testis.
+
+P0C7P1	RBY1D_HUMAN	RNA-binding motif protein, Y chromosome, family 1 member D	RBMY1D	FUNCTION: RNA-binding protein which may be involved in spermatogenesis. Required for sperm development, possibly by participating in pre-mRNA splicing in the testis.
+
+A6NEQ0	RBY1E_HUMAN	RNA-binding motif protein, Y chromosome, family 1 member E	RBMY1E	FUNCTION: RNA-binding protein which may be involved in spermatogenesis. Required for sperm development, possibly by participating in pre-mRNA splicing in the testis.
+
+Q15415	RBY1F_HUMAN	RNA-binding motif protein, Y chromosome, family 1 member F/J (Y chromosome RNA recognition motif 2)	RBMY1F YRRM2; RBMY1J	FUNCTION: RNA-binding protein which may be involved in spermatogenesis. Required for sperm development, possibly by participating in pre-mRNA splicing in the testis. {ECO:0000269|PubMed:8269511}.
+
+Q15415	RBY1F_HUMAN	RNA-binding motif protein, Y chromosome, family 1 member F/J (Y chromosome RNA recognition motif 2)	RBMY1F YRRM2; RBMY1J	FUNCTION: RNA-binding protein which may be involved in spermatogenesis. Required for sperm development, possibly by participating in pre-mRNA splicing in the testis. {ECO:0000269|PubMed:8269511}.
+
+P22090	RS4Y1_HUMAN	40S ribosomal protein S4, Y isoform 1 (Small ribosomal subunit protein eS4)	RPS4Y1 RPS4Y PRO2646	
+
+Q8TD47	RS4Y2_HUMAN	40S ribosomal protein S4, Y isoform 2 (Small ribosomal subunit protein eS4)	RPS4Y2 RPS4Y2P	
+
+Q05066	SRY_HUMAN	Sex-determining region Y protein (Testis-determining factor)	SRY TDF	FUNCTION: Transcriptional regulator that controls a genetic switch in male development. It is necessary and sufficient for initiating male sex determination by directing the development of supporting cell precursors (pre-Sertoli cells) as Sertoli rather than granulosa cells (By similarity). In male adult brain involved in the maintenance of motor functions of dopaminergic neurons (By similarity). Involved in different aspects of gene regulation including promoter activation or repression (By similarity). Promotes DNA bending. SRY HMG box recognizes DNA by partial intercalation in the minor groove. Also involved in pre-mRNA splicing. Binds to the DNA consensus sequence 5'-[AT]AACAA[AT]-3'. {ECO:0000250, ECO:0000269|PubMed:11563911, ECO:0000269|PubMed:11818535, ECO:0000269|PubMed:15170344, ECO:0000269|PubMed:16762365}.
+
+Q9BQ87	TBL1Y_HUMAN	F-box-like/WD repeat-containing protein TBL1Y (Transducin beta-like protein 1Y) (Transducin-beta-like protein 1, Y-linked)	TBL1Y TBL1	FUNCTION: F-box-like protein involved in the recruitment of the ubiquitin/19S proteasome complex to nuclear receptor-regulated transcription units. Plays an essential role in transcription activation mediated by nuclear receptors. Probably acts as integral component of corepressor complexes that mediates the recruitment of the 19S proteasome complex, leading to the subsequent proteasomal degradation of transcription repressor complexes, thereby allowing cofactor exchange (By similarity). {ECO:0000250}.
+
+Q8IUE0	TF2LY_HUMAN	Homeobox protein TGIF2LY (TGF-beta-induced transcription factor 2-like protein) (TGFB-induced factor 2-like protein, Y-linked) (TGIF-like on the Y)	TGIF2LY TGIFLY	FUNCTION: May have a transcription role in testis. May act as a competitor/regulator of TGIF2LX.
+
+O14604	TYB4Y_HUMAN	Thymosin beta-4, Y-chromosomal	TMSB4Y TB4Y	FUNCTION: Plays an important role in the organization of the cytoskeleton. Binds to and sequesters actin monomers (G actin) and therefore inhibits actin polymerization (By similarity). {ECO:0000250}.
+
+Q01534	TSPY1_HUMAN	Testis-specific Y-encoded protein 1 (Cancer/testis antigen 78) (CT78)	TSPY1 TSPY	FUNCTION: May be involved in sperm differentiation and proliferation. {ECO:0000269|PubMed:8923009}.
+
+A6NKD2	TSPY2_HUMAN	Testis-specific Y-encoded protein 2 (Testis-specific Y-encoded protein Q1)	TSPY2 TSPYQ1	
+
+P0CV98	TSPY3_HUMAN	Testis-specific Y-encoded protein 3	TSPY3	
+
+P0CV99	TSPY4_HUMAN	Testis-specific Y-encoded protein 4	TSPY4	
+
+P0CW00	TSPY8_HUMAN	Testis-specific Y-encoded protein 8	TSPY8	
+
+P0CW01	TSPYA_HUMAN	Testis-specific Y-encoded protein 10	TSPY10	
+
+O00507	USP9Y_HUMAN	Probable ubiquitin carboxyl-terminal hydrolase FAF-Y (EC 3.4.19.12) (Deubiquitinating enzyme FAF-Y) (Fat facets protein-related, Y-linked) (Ubiquitin thioesterase FAF-Y) (Ubiquitin-specific protease 9, Y chromosome) (Ubiquitin-specific-processing protease FAF-Y)	USP9Y DFFRY	FUNCTION: May function as a ubiquitin-protein or polyubiquitin hydrolase involved both in the processing of ubiquitin precursors and of ubiquitinated proteins. May therefore play an important regulatory role at the level of protein turnover by preventing degradation of proteins through the removal of conjugated ubiquitin. Essential component of TGF-beta/BMP signaling cascade. Deubiquitinates monoubiquitinated SMAD4, opposing the activity of E3 ubiquitin-protein ligase TRIM33. Monoubiquitination of SMAD4 hampers its ability to form a stable complex with activated SMAD2/3 resulting in inhibition of TGF-beta/BMP signaling cascade. Deubiquitination of SMAD4 by USP9X re-empowers its competence to mediate TGF-beta signaling (By similarity). {ECO:0000250}.
+
+O14607	UTY_HUMAN	Histone demethylase UTY (EC 1.14.11.-) (Ubiquitously-transcribed TPR protein on the Y chromosome) (Ubiquitously-transcribed Y chromosome tetratricopeptide repeat protein)	UTY KDM6C	FUNCTION: Male-specific histone demethylase that catalyzes trimethylated 'Lys-27' (H3K27me3) demethylation in histone H3. Has relatively low lysine demethylase activity. {ECO:0000269|PubMed:24798337}.
+
+O14598	VCY1_HUMAN	Testis-specific basic protein Y 1 (Basic charge, Y-linked 1) (Variably charged protein Y)	VCY BPY1 VCY1A; VCY1B BPY1B	FUNCTION: May mediate a process in spermatogenesis or may play a role in sex ratio distortion.
+
+O14598	VCY1_HUMAN	Testis-specific basic protein Y 1 (Basic charge, Y-linked 1) (Variably charged protein Y)	VCY BPY1 VCY1A; VCY1B BPY1B	FUNCTION: May mediate a process in spermatogenesis or may play a role in sex ratio distortion.
+
+P08048	ZFY_HUMAN	Zinc finger Y-chromosomal protein	ZFY	FUNCTION: Probable transcriptional activator. Binds to the consensus sequence 5'-AGGCCY-3'. {ECO:0000269|PubMed:20028140}.
+
