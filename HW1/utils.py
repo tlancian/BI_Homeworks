@@ -1,4 +1,5 @@
 import bioservices.uniprot as up
+from bioservices.hgnc import HGNC as h
 from Bio import Entrez
 
 # Return the results of a query of UniProt DB
@@ -18,4 +19,8 @@ def query_ncbi(gene):
     record = Entrez.read(handle)
     return record["IdList"]
     
+
+# Return the results of a query in HGCN
+def query_hgnc(gene):
+    return(h.search(gene)['response']['docs'][0]['symbol'])
 

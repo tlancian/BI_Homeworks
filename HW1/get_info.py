@@ -30,6 +30,16 @@ with open("ncbi.tsv","w") as results:
     results.write("Gene\tID\n")
     results.writelines("%s\t%s\n" % line for line in zip(genes,map(ut.query_ncbi, genes)))
     
+ 
+#### HGNC  
+with open('hgnc_list.tsv', 'w') as results:
+    results.write("Gene\tApproved Symbol\n")
+    results.writelines("%s\t%s\n" % line for line in zip(genes, map(ut.query_hgnc, genes))) 
+    
+    
     
 #### Description
 #TODO: Understand what they want
+
+
+
