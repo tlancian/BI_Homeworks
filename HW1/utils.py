@@ -1,13 +1,20 @@
 import bioservices.uniprot as up
-from bioservices.hgnc import HGNC as h
+from bioservices.hgnc import HGNC
 from Bio import Entrez
 
+
+# Return the results of a query in HGCN
+def query_hgnc(gene):
+    h = HGNC()
+    return h.search(gene)['response']['docs'][0]['symbol']
+
+
+
 # Return the results of a query of UniProt DB
-#TODO: check which columns has to be taken into account
-def get_info(gene):
+def query_uniprot(gene):
     u = up.UniProt()
     return u.search("gene_exact:"+gene+"+AND+reviewed:yes+AND+organism:9606",
-                    columns = "id, entry name, protein names, genes, comment(FUNCTION)").split("\n")
+                    columns = "id, protein names, comment(FUNCTION)").split("\n")[1]
     
 
 # Return the results of a query of NCBI DB
@@ -20,7 +27,5 @@ def query_ncbi(gene):
     return record["IdList"]
     
 
-# Return the results of a query in HGCN
-def query_hgnc(gene):
-    return(h.search(gene)['response']['docs'][0]['symbol'])
+
 
