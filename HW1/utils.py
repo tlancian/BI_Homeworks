@@ -1,6 +1,7 @@
 import bioservices.uniprot as up
 from bioservices.hgnc import HGNC
 from Bio import Entrez
+from functools import reduce
 
 
 # Return the results of a query in HGCN
@@ -27,5 +28,17 @@ def query_ncbi(gene):
     return record["IdList"]
     
 
+# Merge the DFs: read data from a name list and merge the DFs
+def merge_dfs(df_name_list):
+    dfs_list = []
+    # read data
+    for filename in os.listdir():
+        if filename in df_name_list:
+            with open(os.path.join(filename)) as f:
+                df = pd.read_csv(f, sep='\t', index_col=False).loc[:, 'gene':]
+                dfs_list.append(df)
 
+    # merge DFs
+    df_final = reduce(lambda left,right: pd.merge(left,right, on='gene'), dfs_list)
+    return(df_final)
 
