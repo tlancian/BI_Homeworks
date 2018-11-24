@@ -1,0 +1,37 @@
+### 24 Novembre (S) ###
+
+
+## 1. modificato uniprot.tsv (aveva una colonna di troppo). 
+	caricata nuova versione su Git
+
+## 2. modificato hgnc.tsv (cambio nome colonna)
+	caricata nuova versione su Git
+
+## 3. Join dei 3 DFs e salvati in 'df_final.tsv'
+	aggiunta funzione 'merge_dfs' su utils
+	aggiunto codice su get_info
+	caricato df_final.tsv su Git
+
+
+## 4. BIOGRID. Creato biogrid.tsv in cui ci sono tutte le interazioni tra geni dati e geni non presenti nella lista. 
+Totale: 31116 interazioni, 220 geni (26 originali)
+-> Verifica 'casi anomali'.
+
+	aggiunto biogrid.tsv su Git
+ 
+
+
+
+
+
+
+##### Problemi/dubbi
+
+- Alcuni geni hanno stesso uniprot_ac
+- prendere solo il nome principale della proteina
+- funzione (max 20 parole)
+- alcuni geni hanno più di un ID (da ncbi)
+- biogrid: solo 26 dei 45 geni totali hanno interazioni. 
+- biogrid: controllare se ci sono interazioni fra stesso gene
+
+
