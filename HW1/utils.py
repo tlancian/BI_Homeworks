@@ -2,7 +2,7 @@ import bioservices.uniprot as up
 from bioservices.hgnc import HGNC
 from Bio import Entrez
 from functools import reduce
-
+from bioservices import BioGRID
 
 # Return the results of a query in HGCN
 def query_hgnc(gene):
@@ -37,4 +37,15 @@ def merge_dfs(dfs_name_list):
  
     df_final = reduce(lambda left,right: pd.merge(left,right,on='gene'), dfs_list)
     return(df_final)
+
+
+# Return a list of tuples representing all the interactions of a given list.
+def query_biogrid(genes_lst):
+    b = BioGRID(query=genes_lst, taxId = "9606")
+    interactors = b.biogrid.interactors
+    return(interactors)
+
+
+
+
 

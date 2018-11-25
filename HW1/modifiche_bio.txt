@@ -18,10 +18,11 @@ Totale: 31116 interazioni, 220 geni (26 originali)
 -> Verifica 'casi anomali'.
 
 	aggiunto biogrid.tsv su Git
- 
+ 	aggiunta funzione per query da biogrid su utils
+	aggiunto codice su get_info 
+	
 
-
-
+## 7. TO DO: BIOGRI. Provare con uniprotAC
 
 
 
