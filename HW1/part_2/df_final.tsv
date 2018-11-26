@@ -1,4 +1,4 @@
-gene	uniprot_ac	protein_name	function	approved_symbol	ID
+gene	uniprot_ac	protein_name	function	approved_symbol	id
 AMELY	Q99218	Amelogenin, Y isoform	FUNCTION: Plays a role in biomineralization. Seems to regulate the formation of crystallites during the secretory stage of tooth enamel development. Thought to play a major role in the structural organization and mineralization of developing enamel.	AMELY	['266']
 BPY2	O14599	Testis-specific basic protein Y 2 (Basic charge, Y-linked 2) (Variably charged protein Y 2)		BPY2	['9083']
 BPY2B	O14599	Testis-specific basic protein Y 2 (Basic charge, Y-linked 2) (Variably charged protein Y 2)		BPY2B	['442867']

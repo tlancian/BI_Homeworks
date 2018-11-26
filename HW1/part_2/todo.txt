@@ -1,0 +1,8 @@
+TODO:
+	
+- Alcuni geni hanno stesso uniprot_ac (Cincotti ci disse fosse ok... confermiamolo con Tieri!)
+- prendere solo il nome principale della proteina
+- funzione (max 20 parole)
+
+
+

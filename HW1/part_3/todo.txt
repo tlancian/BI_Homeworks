@@ -1,0 +1,18 @@
+## 4. BIOGRID. Creato biogrid.tsv in cui ci sono tutte le interazioni tra geni dati e geni non presenti nella lista. 
+Totale: 31116 interazioni, 220 geni (26 originali)
+-> Verifica 'casi anomali'.
+
+	aggiunto biogrid.tsv su Git
+ 	aggiunta funzione per query da biogrid su utils
+	aggiunto codice su get_info 
+	
+
+## 7. TO DO: BIOGRI. Provare con uniprotAC
+
+
+
+##### Problemi/dubbi
+
+
+- biogrid: solo 26 dei 45 geni totali hanno interazioni. 
+- biogrid: controllare se ci sono interazioni fra stesso gene
