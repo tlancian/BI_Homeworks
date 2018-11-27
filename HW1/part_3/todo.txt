@@ -7,7 +7,9 @@ Totale: 31116 interazioni, 220 geni (26 originali)
 	aggiunto codice su get_info 
 	
 
-## 7. TO DO: BIOGRI. Provare con uniprotAC
+## 7. BIOGRID. Provare con uniprotAC (NON VA FATTO)
+
+## IID. Aggiunti iid.tsv e iid_ac
 
 
 
@@ -16,3 +18,4 @@ Totale: 31116 interazioni, 220 geni (26 originali)
 
 - biogrid: solo 26 dei 45 geni totali hanno interazioni. 
 - biogrid: controllare se ci sono interazioni fra stesso gene
+- controllare risultati di biogrid 
