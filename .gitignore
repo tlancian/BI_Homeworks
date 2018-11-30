@@ -102,3 +102,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+HW1/part_3/biogrid_all.txt
