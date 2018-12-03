@@ -1,22 +1,23 @@
 import utils as ut
 
-
 # Initialize the gene list
 with open("../seed_genes.txt","r") as f:
     genes = [gene.rstrip() for gene in f.readlines()]
 
 
-#### Official Gene Symbol - HGNC  
-    
+#### Official Gene Symbol - HGNC   
 with open('dataframes/hgnc.tsv', 'w') as results:
     results.write("gene\tapproved_symbol\n")
     results.writelines("%s\t%s\n" % line for line in zip(genes, map(ut.query_hgnc, genes))) 
 
-#### Uniprot AC + Protein Name
 
+
+#### Uniprot AC + Protein Name
 with open("dataframes/uniprot.tsv","w") as results:
     results.write("gene\tuniprot_ac\tprotein_name\tfunction\n")
     results.writelines("%s\t%s\n" % line for line in zip(genes,map(ut.query_uniprot, genes)))     
+
+
 
 #### Entrez Gene ID
 
@@ -39,18 +40,12 @@ ncbi_results["TSPY10"] = ["100289087"]
 ncbi_results["TSPY3"] = ["728137"]
 ncbi_results["TSPY1"] = ["728403"]
 
-
-
-
 with open("dataframes/ncbi.tsv","w") as results:
     results.write("gene\tid\n")
     results.writelines("%s\t%s\n" % line for line in {k:v[0] for k,v in ncbi_results.items()}.items())
 
-
-
     
-### Merge DFs
-
+### Merging all the dataframes
 df_name_list = ['dataframes/uniprot.tsv', 'dataframes/hgnc.tsv', 'dataframes/ncbi.tsv']
 df_final = ut.merge_dfs(df_name_list)
 

@@ -10,7 +10,6 @@ def query_hgnc(gene):
     return h.search(gene)['response']['docs'][0]['symbol']
 
 
-
 # Return the results of a query of UniProt DB
 def query_uniprot(gene):
     u = up.UniProt()
@@ -36,9 +35,7 @@ def merge_dfs(dfs_name_list):
         dfs_list.append(df)
  
     df_final = reduce(lambda left,right: pd.merge(left,right,on='gene'), dfs_list)
-    df_final.to_csv('df_final.tsv', sep='\t', index = False)
-    
-    return
+    df_final.to_csv('sg_info.tsv', sep='\t', index = False)
 
 
 
