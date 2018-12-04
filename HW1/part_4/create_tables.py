@@ -75,7 +75,7 @@ sgi_iid = iid.loc[iid["interactor_1"].isin(genes) & iid["interactor_2"].isin(gen
 
 sgi = pd.concat([sgi_bio, sgi_iid])
 
-sgi.to_csv("sgi.tsv", sep = "\t", index = False)
+sgi.to_csv("results/sgi.tsv", sep = "\t", index = False)
 
 
 ### Union Interactome
@@ -84,7 +84,7 @@ ui_bio = biogrid.loc[biogrid["interactor_1"].isin(genes) | biogrid["interactor_2
 ui_iid = iid.loc[iid["interactor_1"].isin(genes) | iid["interactor_2"].isin(genes)]
 
 ui = pd.concat([ui_bio, ui_iid])
-ui.to_csv("ui.tsv", sep = "\t", index = False)
+ui.to_csv("results/ui.tsv", sep = "\t", index = False)
 
 
 ### Intersection Interactome
@@ -96,4 +96,4 @@ ii = pd.merge(biogrid, iid, how='inner', on=["set_genes"])
 ii = ii.iloc[:,:4]
 
 ii.columns = ["interactor_1", "interactor_2", "interactor_1_uniprot", "interactor_2_uniprot"]
-ii.to_csv("ii.tsv", sep = "\t", index = False)
+ii.to_csv("results/ii.tsv", sep = "\t", index = False)
