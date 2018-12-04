@@ -35,7 +35,7 @@ def merge_dfs(dfs_name_list):
         dfs_list.append(df)
  
     df_final = reduce(lambda left,right: pd.merge(left,right,on='gene'), dfs_list)
-    df_final.to_csv('sg_info.tsv', sep='\t', index = False)
+    df_final.to_csv('results/sg_info.tsv', sep='\t', index = False)
 
 
 

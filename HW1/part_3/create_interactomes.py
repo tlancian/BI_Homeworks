@@ -28,8 +28,6 @@ biogrid.drop_duplicates(inplace = True)
 biogrid.to_csv('results/biogrid.tsv', sep='\t', index=False)
 
 
-
-
 ### IID
 
 #IID dataframes were obtained directly by the website. iid represents the one where the query was made with the names of the genes, iid_ac with

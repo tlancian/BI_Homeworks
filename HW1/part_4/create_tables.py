@@ -48,7 +48,7 @@ biogrid.drop(biogrid[(biogrid["interactor_1_uniprot"].apply(type) == list) | (bi
 # Adding DB information
 biogrid["database"] = ["BioGrid" for _ in range(biogrid.shape[0])]
 
-
+biogrid.to_csv('../part_3/results/biogrid.tsv', sep='\t', index=False)
 
 
 ### Preprocessing IID
@@ -94,6 +94,8 @@ iid["set_genes"] = iid.apply(lambda row: frozenset([row.interactor_1, row.intera
 
 ii = pd.merge(biogrid, iid, how='inner', on=["set_genes"])
 ii = ii.iloc[:,:4]
-
 ii.columns = ["interactor_1", "interactor_2", "interactor_1_uniprot", "interactor_2_uniprot"]
+
+ii = ii.loc[ii["interactor_1"].isin(genes) | ii["interactor_2"].isin(genes)]
+
 ii.to_csv("results/ii.tsv", sep = "\t", index = False)
