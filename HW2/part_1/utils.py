@@ -14,7 +14,7 @@ def read_file(file, channels = None):
     if channels:
         n = len(channels)
         
-        signal_labels = f.getSignalLabels()
+        signal_labels = [name.replace(".","") for name in f.getSignalLabels()]
         
         signals = np.zeros((n, f.getNSamples()[0]))
         
@@ -25,6 +25,7 @@ def read_file(file, channels = None):
         f._close()
         
     else:
+
         n = f.signals_in_file
     
         signals = np.zeros((n, f.getNSamples()[0]))
@@ -39,18 +40,51 @@ def read_file(file, channels = None):
     return signals
 
 
-def fit_model(data, order, fs, resolution, method):
+def fit_model(data, fs, resolution, method, freq = None):
     '''
     Fit an MVAR model, and compute connecitvity estimation via PDC or DTF.
     '''
     
-    
-    model = connectivipy.Mvar().fit(data, order = order)
+    model = connectivipy.Mvar().fit(data, method = "yw")
     
     
     if method == "dtf":
-        return connectivipy.conn.dtf_fun(model[0],model[1],fs = fs, resolution = resolution)
+        if freq:
+            res = connectivipy.conn.dtf_fun(model[0],model[1],fs = fs, resolution = resolution)[freq,:,:]
+            np.fill_diagonal(res,0)
+            return res
+        else:
+            return connectivipy.conn.dtf_fun(model[0],model[1],fs = fs, resolution = resolution)
     elif method == "pdc":
-        return connectivipy.conn.pdc_fun(model[0],model[1],fs = fs, resolution = resolution)
+        if freq:
+            res = connectivipy.conn.pdc_fun(model[0],model[1],fs = fs, resolution = resolution)[freq,:,:]
+            np.fill_diagonal(res,0)
+            return res
+        else:
+            return connectivipy.conn.pdc_fun(model[0],model[1],fs = fs, resolution = resolution)
     else:
         return "Wrong method. Use \"pdc\" or \"dtf\""
+    
+    
+def graph_density(edges,n):
+    return (2*edges)/(n*(n-1))
+
+
+def find_threshold(network, density):
+        
+    n = network.shape[0]
+    
+    num_edges = int((density*n*(n-1))/2)
+    
+    threshold = -np.sort(-network, axis = None)[num_edges+1]
+    
+    return threshold
+
+def adjacency_matrix(network, threshold, file=None):
+    adj = (network > threshold).astype(int)
+    if file:
+        np.save(file,adj)
+        return
+    return adj
+    
+    
