@@ -23,7 +23,15 @@ ut.adjacency_matrix(eo_pdc, ut.find_threshold(eo_pdc,density), "networks/eo_pdc_
 ut.adjacency_matrix(ec_pdc, ut.find_threshold(ec_pdc,density), "networks/ec_pdc_20.npy")
 
 
-#TODO: Graphical representation of the adjacency matrices
+# Graphical representation of the adjacency matrices
+adj_eo = np.load('networks/eo_pdc_20.npy')
+G_eo=nx.from_numpy_matrix(adj_eo)
+create_graph_image(G_eo, 'eo_pdc_graph')
+
+adj_ec = np.load('networks/ec_pdc_20.npy')
+G_ec=nx.from_numpy_matrix(adj_ec)
+create_graph_image(G_ec, 'ec_pdc_graph')
+
 
 ######## 1.2
 
@@ -37,7 +45,17 @@ ut.adjacency_matrix(eo_dtf, ut.find_threshold(eo_dtf,density), "networks/eo_dtf_
 ut.adjacency_matrix(ec_dtf, ut.find_threshold(ec_dtf,density), "networks/ec_dtf_20.npy")
 
 
-#TODO: Graphical representation of the adjacency matrices
+# Graphical representation of the adjacency matrices
+
+adj_eo_dtf = np.load('networks/eo_dtf_20.npy')
+G_eo_dtf = nx.from_numpy_matrix(adj_eo_dtf)
+create_graph_image(G_eo_dtf, 'eo_dtf_graph')
+
+adj_ec_dtf = np.load('networks/ec_dtf_20.npy')
+G_ec_dtf = nx.from_numpy_matrix(adj_ec_dtf)
+create_graph_image(G_ec_dtf, 'ec_dtf_graph')
+
+
 
 ######## 1.3
 

@@ -87,4 +87,14 @@ def adjacency_matrix(network, threshold, file=None):
         return
     return adj
     
+def create_graph_image(G, name):
+    for node in G.nodes():
+        G.node[node]['node_size'] = G.degree(node)*100
+        G.node[node]['label'] = node
+
+    plt.figure(num=None, figsize=(15,15), dpi=50)
+    nx.draw(G, node_shape= 'o', node_size=list(nx.get_node_attributes(G,'node_size').values()),
+           cmap=plt.cm.autumn_r, node_color=range(64), labels=nx.get_node_attributes(G,'label'))
+    plt.title(name, fontsize=25)
+    plt.savefig(name + '.png', bbox_inches='tight')
     
