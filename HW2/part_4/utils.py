@@ -20,8 +20,7 @@ def get_labels_nodes(number_of_nodes = 64):
 
 def read_graph(file):
     adj = np.load("../part_1/results/npy/"+file+".npy")
-    G = nx.DiGraph()
-    G = nx.from_numpy_matrix(adj)
+    G = nx.from_numpy_matrix(adj, create_using = nx.DiGraph())
     G = nx.relabel_nodes(G, dict(enumerate(get_labels_nodes(adj.shape[0]))))
     return G
 
@@ -54,6 +53,11 @@ def get_coordinates():
     
 def draw_communities(network, communities, file_name):
     
+    ##################### MODIFY HERE FOR THE VISUALIZATION
+    
     nx.draw(network, pos = get_coordinates(), node_color = list(communities.values()), with_labels = True)
+    
+    #####################
+    
     plt.savefig("results/"+file_name+".png")
     plt.close()

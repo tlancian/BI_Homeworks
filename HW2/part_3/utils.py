@@ -74,8 +74,13 @@ def subgraph_by_motif(file, motif):
             graph.add_edge(triplet[1]-1, triplet[2]-1)
         
         graph = nx.relabel_nodes(graph, dict(enumerate(get_labels_nodes())))
+        
+        ##################### MODIFY HERE FOR THE VISUALIZATION
     
         nx.draw(graph, pos = get_coordinates(), with_labels = True)
+        
+        #####################
+        
         plt.savefig("results/"+file[:9]+".png")
         plt.close()
     
