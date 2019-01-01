@@ -8,11 +8,11 @@ import utils as ut
 
 # Compute communities of EO network by Louvain Algo
 eo_network = ut.read_graph("eo_pdc_20")
-eo_communities = ut.get_communities(eo_network, "eo_pdc_20_communities")
+eo_communities = ut.get_communities(eo_network)
 
 # Compute communities of EC network by Louvain Algo
 ec_network = ut.read_graph("ec_pdc_20")
-ec_communities = ut.get_communities(ec_network, "ec_pdc_20_communities")
+ec_communities = ut.get_communities(ec_network)
 
 ### 4.2
 

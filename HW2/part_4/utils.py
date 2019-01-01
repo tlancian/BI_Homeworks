@@ -1,10 +1,12 @@
 import networkx as nx
 import numpy as np
-from community import community_louvain
+from modularity_maximization import partition
 import matplotlib.pyplot as plt
 import pandas as pd
 from collections import defaultdict
 
+import igraph
+import louvain
 
 def get_labels_nodes(number_of_nodes = 64):
     if number_of_nodes == 64:
@@ -20,23 +22,26 @@ def get_labels_nodes(number_of_nodes = 64):
 
 def read_graph(file):
     adj = np.load("../part_1/results/npy/"+file+".npy")
-    G = nx.from_numpy_matrix(adj, create_using = nx.DiGraph())
-    G = nx.relabel_nodes(G, dict(enumerate(get_labels_nodes(adj.shape[0]))))
+    
+    G = igraph.Graph.Adjacency((adj > 0).tolist())
+    #G = nx.from_numpy_matrix(adj, create_using = nx.DiGraph())
+    #G = nx.relabel_nodes(G, dict(enumerate(get_labels_nodes(adj.shape[0]))))
     return G
 
-def get_communities(graph, file):
-    partition = community_louvain.best_partition(graph)
+
+def get_communities(graph):
+    return louvain.find_partition(graph,louvain.ModularityVertexPartition)
     
-    res = defaultdict(list)
+    #res = defaultdict(list)
     
-    for key, value in partition.items():
-        res[value].append(key)
+    #for key, value in partition_com.items():
+    #    res[value].append(key)
         
-    communities = res.items()
+    #communities = res.items()
     
-    pd.DataFrame({"community": [elem[0] for elem in communities], "members": [elem[1] for elem in communities]}).to_excel("results/"+file+".xlsx")
+    #pd.DataFrame({"community": [elem[0] for elem in communities], "members": [elem[1] for elem in communities]}).to_excel("results/"+file+".xlsx")
     
-    return partition
+    #return partition_com
 
 def get_coordinates():
     
