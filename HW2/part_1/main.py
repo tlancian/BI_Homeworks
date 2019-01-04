@@ -30,6 +30,7 @@ ut.adjacency_matrix(eo_pdc, ut.find_threshold(eo_pdc,density), "eo_pdc_20")
 ut.adjacency_matrix(ec_pdc, ut.find_threshold(ec_pdc,density), "ec_pdc_20")
 
 
+
 ######## 1.2
 
 
@@ -40,6 +41,8 @@ ec_dtf = ut.fit_model(ec, fs, resolution, "dtf", freq)
 # Adjacency Matrices for 20% density networks
 ut.adjacency_matrix(eo_dtf, ut.find_threshold(eo_dtf,density), "eo_dtf_20")
 ut.adjacency_matrix(ec_dtf, ut.find_threshold(ec_dtf,density), "ec_dtf_20")
+
+
 
 
 ######## 1.3

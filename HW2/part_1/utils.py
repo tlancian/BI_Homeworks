@@ -151,18 +151,15 @@ def viz_graph(file):
     adj = np.load("../part_1/results/npy/"+file+".npy")
     G = nx.from_numpy_matrix(adj, create_using = nx.DiGraph())
     G = nx.relabel_nodes(G, dict(enumerate(get_labels_nodes(adj.shape[0]))))
-    node_sizes = list(G.degree().items())
     
-    ############################ MODIFY HERE FOR THE VISUALIZATION
-    
-    nx.draw(G, pos = get_coordinates(), with_labels = True, nodelist = [elem[0] for elem in node_sizes],
-            node_size = [(elem[1]+1)*50 for elem in node_sizes], cmap=plt.cm.autumn_r, node_color = range(len(G.nodes())))
-    
-    
-    ############################
-    
-        
-    plt.title(file, fontsize=25)
+    for node in G.nodes():
+        G.node[node]['node_size'] = G.degree(node)*100
+        G.node[node]['label'] = node
+
+    plt.figure(num=None, figsize=(15,15), dpi=50)
+    nx.draw(G, node_shape= 'o', node_size=list(nx.get_node_attributes(G,'node_size').values()),
+           cmap=plt.cm.autumn_r, node_color=range(64), labels=nx.get_node_attributes(G,'label'))
+    plt.title(name, fontsize=25) 
     plt.savefig("results/png/networks/"+file+".png", bbox_inches='tight')
     plt.close()
     return
