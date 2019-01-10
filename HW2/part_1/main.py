@@ -1,20 +1,19 @@
 import utils as ut
 
-#TODO: 1.5 - ask for the right channel locations!
 #TODO: 1.5 - Visualize better the networks
 #TODO: 1.6 - Check if alternative frequency is meaningful
 #TODO: ALL - Create a better visualization of the adjacency matrix
 #TODO: utils - Comment all functions
 
-
 # Read the files
 eo = ut.read_file("../data/S072R01.edf")
 ec = ut.read_file("../data/S072R01.edf")
 
+
 ######## 1.1
 
 fs = 160 # Frequency of sampling, given by data
-resolution = 50 # Resolution of model (s.t. each bin has 1Hz of width)
+resolution = 100 # Resolution of model (s.t. each bin has 1Hz of width)
 freq = 10 # Frequency of interest
 density = 0.2 # Density of the graph desired
 
@@ -59,16 +58,13 @@ ec_dtf_names = ["ec_dtf_01", "ec_dtf_05", "ec_dtf_10", "ec_dtf_30", "ec_dtf_50"]
 ### PDC Networks
 
 eo_pdc_networks = list(map(lambda x: ut.adjacency_matrix(eo_pdc, ut.find_threshold(eo_pdc,x[0]), x[1]), zip(densities,eo_pdc_names)))
-eo_pdc_networks = list(map(lambda x: ut.adjacency_matrix(eo_pdc, ut.find_threshold(eo_pdc,x[0]), x[1]), zip(densities,ec_pdc_names)))
+ec_pdc_networks = list(map(lambda x: ut.adjacency_matrix(ec_pdc, ut.find_threshold(ec_pdc,x[0]), x[1]), zip(densities,ec_pdc_names)))
 
 
 ### DTF Networks
 
-eo_dtf_networks = list(map(lambda x: ut.adjacency_matrix(eo_pdc, ut.find_threshold(eo_dtf,x[0]), x[1]), zip(densities,eo_dtf_names)))
-eo_dtf_networks = list(map(lambda x: ut.adjacency_matrix(eo_pdc, ut.find_threshold(eo_dtf,x[0]), x[1]), zip(densities,ec_dtf_names)))
-
-
-
+eo_dtf_networks = list(map(lambda x: ut.adjacency_matrix(eo_dtf, ut.find_threshold(eo_dtf,x[0]), x[1]), zip(densities,eo_dtf_names)))
+ec_dtf_networks = list(map(lambda x: ut.adjacency_matrix(ec_dtf, ut.find_threshold(ec_dtf,x[0]), x[1]), zip(densities,ec_dtf_names)))
 
 
 ######## 1.4

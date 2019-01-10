@@ -1,10 +1,5 @@
 import utils as ut
 
-#TODO: ALL - choose more meaningful names for variables
-#TODO: 3.2 - make a clear visualization
-#TODO: 3.3 - create a functiont that makes the xls
-#TODO: 3.3 - understanding enumeration of the graph.
-
 
 # Creates the txt files needed for launching mfinder
 ut.create_network_file("eo_pdc_20")
@@ -44,7 +39,7 @@ ut.subgraph_by_motif("ec_pdc_20_MEMBERS_size3",motif_id)
 
 ######### Part 3.3
 
-# Selecting the Parieto-Occipital central Channel, taht correpond to the number 57 in our data
+# Selecting the Parieto-Occipital central Channel, that correpond to the number 57 in our data
 channel = 57
 
 # Selecting the motifs ids found by Mfinder, that were the same for both networks (EO and EC).

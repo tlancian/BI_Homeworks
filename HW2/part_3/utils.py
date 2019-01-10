@@ -77,7 +77,9 @@ def subgraph_by_motif(file, motif):
         
         ##################### MODIFY HERE FOR THE VISUALIZATION
     
-        nx.draw(graph, pos = get_coordinates(), with_labels = True)
+        plt.figure(num=None, figsize=(15,15), dpi=50)
+        nx.draw(graph, node_shape= 'o', with_labels = True, pos = get_coordinates(), node_size = 600)
+        plt.title(file[:9], fontsize=25) 
         
         #####################
         
@@ -125,8 +127,8 @@ def get_coordinates():
         
         coord = {}
         
-        channels = [row.split(" ") for row in f.readlines()]
-        
+        channels = [row.split("        ") for row in f.readlines()[1:]]
+
         for elem in channels:
             coord[elem[1]] = (float(elem[2]), float(elem[3]))
         

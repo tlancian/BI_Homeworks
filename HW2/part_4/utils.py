@@ -1,6 +1,5 @@
 import networkx as nx
 import numpy as np
-from modularity_maximization import partition
 import matplotlib.pyplot as plt
 import pandas as pd
 from collections import defaultdict
@@ -20,28 +19,34 @@ def get_labels_nodes(number_of_nodes = 64):
         return ["Fp1", "Fp2", "F7", "F3", "Fz", "F4", "F8", "T7", "C3", "Cz",
                 "C4", "T8", "P7", "P3", "Pz", "P4", "P8", "O1", "O2"]
 
-def read_graph(file):
+def read_graph(file, package = "nx"):
     adj = np.load("../part_1/results/npy/"+file+".npy")
     
-    G = igraph.Graph.Adjacency((adj > 0).tolist())
-    #G = nx.from_numpy_matrix(adj, create_using = nx.DiGraph())
-    #G = nx.relabel_nodes(G, dict(enumerate(get_labels_nodes(adj.shape[0]))))
+    if package == "ig":
+        G = igraph.Graph.Adjacency((adj > 0).tolist())
+    else:
+        G = nx.from_numpy_matrix(adj, create_using = nx.DiGraph())
+        G = nx.relabel_nodes(G, dict(enumerate(get_labels_nodes(adj.shape[0]))))
     return G
 
 
-def get_communities(graph):
-    return louvain.find_partition(graph,louvain.ModularityVertexPartition)
+def get_communities(file, method = "louvain"):
+
+    if method == "louvain":
+        partition_com = dict(zip(get_labels_nodes(),louvain.find_partition(read_graph(file, "ig"),louvain.ModularityVertexPartition).membership))
+    else:
+        partition_com = dict(zip(get_labels_nodes(),read_graph(file, "ig").community_infomap().membership))
     
-    #res = defaultdict(list)
+    res = defaultdict(list)
     
-    #for key, value in partition_com.items():
-    #    res[value].append(key)
+    for key, value in partition_com.items():
+        res[value].append(key)
         
-    #communities = res.items()
+    communities = res.items()
     
-    #pd.DataFrame({"community": [elem[0] for elem in communities], "members": [elem[1] for elem in communities]}).to_excel("results/"+file+".xlsx")
+    pd.DataFrame({"community": [elem[0] for elem in communities], "members": [elem[1] for elem in communities]}).to_excel("results/"+file+"_"+method+".xlsx")
     
-    #return partition_com
+    return partition_com
 
 def get_coordinates():
     
@@ -49,18 +54,21 @@ def get_coordinates():
         
         coord = {}
         
-        channels = [row.split(" ") for row in f.readlines()]
-        
+        channels = [row.split("        ") for row in f.readlines()[1:]]
+
         for elem in channels:
             coord[elem[1]] = (float(elem[2]), float(elem[3]))
         
         return coord
     
-def draw_communities(network, communities, file_name):
+def draw_communities(file, file_name, method):
     
     ##################### MODIFY HERE FOR THE VISUALIZATION
     
-    nx.draw(network, pos = get_coordinates(), node_color = list(communities.values()), with_labels = True)
+    plt.figure(num=None, figsize=(15,15), dpi=50)
+    nx.draw(read_graph(file), pos = get_coordinates(), node_color = list(get_communities(file, method = method).values()), with_labels = True, node_size = 600,
+            cmap = "RdYlGn")
+    plt.title(file, fontsize=25) 
     
     #####################
     

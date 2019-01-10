@@ -7,18 +7,21 @@ import utils as ut
 ### 4.1
 
 # Compute communities of EO network by Louvain Algo
-eo_network = ut.read_graph("eo_pdc_20")
-eo_communities = ut.get_communities(eo_network)
+#eo_communities = ut.get_communities("eo_pdc_50")
 
 # Compute communities of EC network by Louvain Algo
-ec_network = ut.read_graph("ec_pdc_20")
-ec_communities = ut.get_communities(ec_network)
+#ec_communities = ut.get_communities("ec_pdc_50")
 
 ### 4.2
 
-ut.draw_communities(eo_network, eo_communities, "eo_pdc_20_communities")
-ut.draw_communities(ec_network, ec_communities, "ec_pdc_20_communities")
-
+ut.draw_communities("eo_pdc_20", "eo_pdc_20_louvain", "louvain")
+ut.draw_communities("ec_pdc_20", "ec_pdc_20_louvain", "louvain")
 
 ### 4.3
+
+
+
+ut.draw_communities("eo_pdc_20", "eo_pdc_20_infomap", "infomap")
+ut.draw_communities("ec_pdc_20", "ec_pdc_20_infomap", "infomap")
+
 

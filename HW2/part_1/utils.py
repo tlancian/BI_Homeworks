@@ -125,8 +125,8 @@ def get_coordinates():
         
         coord = {}
         
-        channels = [row.split(" ") for row in f.readlines()]
-        
+        channels = [row.split("        ") for row in f.readlines()[1:]]
+
         for elem in channels:
             coord[elem[1]] = (float(elem[2]), float(elem[3]))
         
@@ -151,15 +151,16 @@ def viz_graph(file):
     adj = np.load("../part_1/results/npy/"+file+".npy")
     G = nx.from_numpy_matrix(adj, create_using = nx.DiGraph())
     G = nx.relabel_nodes(G, dict(enumerate(get_labels_nodes(adj.shape[0]))))
-    
-    for node in G.nodes():
-        G.node[node]['node_size'] = G.degree(node)*100
-        G.node[node]['label'] = node
+
+    ############################ MODIFY HERE FOR THE VISUALIZATION
+
 
     plt.figure(num=None, figsize=(15,15), dpi=50)
-    nx.draw(G, node_shape= 'o', node_size=list(nx.get_node_attributes(G,'node_size').values()),
-           cmap=plt.cm.autumn_r, node_color=range(64), labels=nx.get_node_attributes(G,'label'))
-    plt.title(name, fontsize=25) 
+    nx.draw(G, node_shape= 'o', with_labels = True, pos = get_coordinates(), node_size = 600)
+    plt.title(file, fontsize=25) 
+
+    ############################
+
     plt.savefig("results/png/networks/"+file+".png", bbox_inches='tight')
     plt.close()
     return
