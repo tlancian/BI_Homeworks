@@ -1,13 +1,10 @@
 import utils as ut
 
-#TODO: 1.5 - Visualize better the networks
-#TODO: 1.6 - Check if alternative frequency is meaningful
 #TODO: ALL - Create a better visualization of the adjacency matrix
-#TODO: utils - Comment all functions
 
 # Read the files
 eo = ut.read_file("../data/S072R01.edf")
-ec = ut.read_file("../data/S072R01.edf")
+ec = ut.read_file("../data/S072R02.edf")
 
 
 ######## 1.1
@@ -91,7 +88,7 @@ for network in [elem[:-4] for elem in ut.get_networks()]:
 ######## 1.6
 
 # Choosing an alternative frequency
-alternative_frequency = 20
+alternative_frequency = 50
 
 ###PDC
 
@@ -100,8 +97,8 @@ alt_eo_pdc = ut.fit_model(eo, fs, resolution, "pdc", alternative_frequency)
 alt_ec_pdc = ut.fit_model(ec, fs, resolution, "pdc", alternative_frequency)
 
 # Adjacency Matrices
-ut.adjacency_matrix(eo_pdc, ut.find_threshold(alt_eo_pdc,density), "alt_eo_pdc_20")
-ut.adjacency_matrix(ec_pdc, ut.find_threshold(alt_ec_pdc,density), "alt_ec_pdc_20")
+ut.adjacency_matrix(alt_eo_pdc, ut.find_threshold(alt_eo_pdc,density), "alt_eo_pdc_20")
+ut.adjacency_matrix(alt_ec_pdc, ut.find_threshold(alt_ec_pdc,density), "alt_ec_pdc_20")
 
 
 

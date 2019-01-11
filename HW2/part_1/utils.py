@@ -104,6 +104,7 @@ def adjacency_matrix(network, threshold, file=None):
         ############################ MODIFY HERE FOR THE VISUALIZATION
             
         plt.imshow(adj, cmap='Blues', interpolation='none')
+        plt.title(file, fontsize=25)
        
         
         ############################
