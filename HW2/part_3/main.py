@@ -43,11 +43,12 @@ ut.subgraph_by_motif("ec_pdc_20_MEMBERS_size3",motif_id)
 channel = 57
 
 # Selecting the motifs ids found by Mfinder, that were the same for both networks (EO and EC).
-motifs = [38,46,108,110]
+motifs_eo = [38,46,108,110]
+motifs_ec = [38,46,108,110, 238]
 
 #Get triplets that contains the node 57 and save the subgraph induced by those motifs.
-ut.get_involved_motifs("eo_pdc_20_MEMBERS_size3", channel, motifs)
-ut.get_involved_motifs("ec_pdc_20_MEMBERS_size3", channel, motifs)
+ut.get_involved_motifs("eo_pdc_20_MEMBERS_size3", channel, motifs_eo)
+ut.get_involved_motifs("ec_pdc_20_MEMBERS_size3", channel, motifs_ec)
 
 
 ######### Part 3.4
