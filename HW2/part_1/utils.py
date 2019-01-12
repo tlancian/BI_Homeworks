@@ -98,23 +98,19 @@ def adjacency_matrix(network, threshold, file=None):
         np.save("results/npy/"+file+".npy",adj)
         
         #Save the png
-        
         plt.figure(figsize = (20,20))
         
-        ############################ MODIFY HERE FOR THE VISUALIZATION
-            
+        a = dict(enumerate(get_labels_nodes(adj.shape[0]))).values()   
         plt.imshow(adj, cmap='Blues', interpolation='none')
-        plt.title(file, fontsize=25)
-       
-        
-        ############################
-        
+        plt.xticks(range(65), a)
+        plt.yticks(range(65), a)
+    
+        #plt.show()
         plt.savefig("results/png/adj_matrices/"+file+".png")
         plt.close()
         
         return
     return adj
-  
     
 
 def get_networks():
@@ -153,15 +149,21 @@ def viz_graph(file):
     G = nx.from_numpy_matrix(adj, create_using = nx.DiGraph())
     G = nx.relabel_nodes(G, dict(enumerate(get_labels_nodes(adj.shape[0]))))
 
-    ############################ MODIFY HERE FOR THE VISUALIZATION
+    # color
+    for node in G.nodes():
+        if node in get_labels_nodes(number_of_nodes = 19):
+            color = 'red'
+        else:
+            color = '#b9c1d1'
+        G.node[node]['color'] = color
 
 
     plt.figure(num=None, figsize=(15,15), dpi=50)
-    nx.draw(G, node_shape= 'o', with_labels = True, pos = get_coordinates(), node_size = 600)
-    plt.title(file, fontsize=25) 
+    nx.draw(G, node_shape= 'o', with_labels = True, pos = get_coordinates(), node_size = 2000, 
+            node_color=list(nx.get_node_attributes(G,'color').values()), font_size=18) 
+    #plt.title(file, fontsize=25) 
 
-    ############################
-
+    #plt.show()
     plt.savefig("results/png/networks/"+file+".png", bbox_inches='tight')
     plt.close()
     return

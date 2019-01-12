@@ -1,11 +1,10 @@
 import utils as ut
+
 import operator
 import numpy as np
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
-
-
 ######## 2.1
 
 ### PDC
@@ -13,9 +12,11 @@ import matplotlib.pyplot as plt
 # Read data
 adj_eo_pdc = np.load('../part_1/results/npy/eo_pdc_20.npy')
 G_eo_pdc =nx.from_numpy_matrix(adj_eo_pdc, create_using=nx.DiGraph())
+G_eo_pdc = nx.relabel_nodes(G_eo_pdc, dict(enumerate(ut.get_labels_nodes(adj_eo_pdc.shape[0]))))
 
 adj_ec_pdc = np.load('../part_1/results/npy/ec_pdc_20.npy')
 G_ec_pdc =nx.from_numpy_matrix(adj_ec_pdc, create_using=nx.DiGraph())
+G_ec_pdc = nx.relabel_nodes(G_ec_pdc, dict(enumerate(ut.get_labels_nodes(adj_ec_pdc.shape[0]))))
 
 ## GLOBAL INDICES 
 
@@ -61,9 +62,12 @@ ut.save_highest_10(out_degree_10_ec_pdc, 'out_degree_ec_pdc')
 # Read data
 adj_eo_dtf = np.load('../part_1/results/npy/eo_dtf_20.npy')
 G_eo_dtf =nx.from_numpy_matrix(adj_eo_dtf, create_using=nx.DiGraph())
+G_eo_dtf = nx.relabel_nodes(G_eo_dtf, dict(enumerate(ut.get_labels_nodes(adj_eo_dtf.shape[0]))))
+
 
 adj_ec_dtf = np.load('../part_1/results/npy/ec_dtf_20.npy')
 G_ec_dtf =nx.from_numpy_matrix(adj_ec_dtf, create_using=nx.DiGraph())
+G_ec_dtf = nx.relabel_nodes(G_ec_dtf, dict(enumerate(ut.get_labels_nodes(adj_ec_dtf.shape[0]))))
 
 ## GLOBAL INDICES 
 
@@ -103,8 +107,8 @@ ut.global_plot(global_cc_eo, avg_path_eo, 'global_indices_eo_pdc')
 
 ######## 2.5
 
-ut.topology(G_eo_pdc, 'topology_eo_pdc')
-ut.topology(G_eo_pdc, 'topology_ec_pdc')
+ut.topology(G_eo_pdc, 'eo_pdc', adj_eo_pdc)
+ut.topology(G_ec_pdc, 'ec_pdc', adj_ec_pdc)
 
 
 ######## 2.6
