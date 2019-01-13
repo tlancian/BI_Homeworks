@@ -66,8 +66,8 @@ def draw_communities(file, file_name, method):
     ##################### MODIFY HERE FOR THE VISUALIZATION
     
     plt.figure(num=None, figsize=(15,15), dpi=50)
-    nx.draw(read_graph(file), pos = get_coordinates(), node_color = list(get_communities(file, method = method).values()), with_labels = True, node_size = 600,
-            cmap = "RdYlGn")
+    nx.draw(read_graph(file), pos = get_coordinates(), node_color = list(get_communities(file, method = method).values()),
+            with_labels = True, node_size = 1000, cmap = "RdYlGn", fontsize=18)
     plt.title(file, fontsize=25) 
     
     #####################

@@ -101,8 +101,8 @@ global_cc_ec = ut.global_indeces(lst_ec)[0]
 avg_path_ec = ut.global_indeces(lst_ec)[1]
 
 # save
-ut.global_plot(global_cc_ec, avg_path_ec, 'global_indices_ec_pdc')
-ut.global_plot(global_cc_eo, avg_path_eo, 'global_indices_eo_pdc')
+ut.global_plot(global_cc_eo, global_cc_ec, avg_path_eo,avg_path_ec, 'global_indices_plot')
+
 
 
 ######## 2.5

@@ -37,17 +37,21 @@ def global_indeces(graph_names_lst):
 
 
 
-def global_plot(global_cc, avg_path, filename):
+def global_plot(cc_eo, cc_ec, avg_eo, avg_ec, filename):
     densities = [5, 10, 20, 30, 50]
     
+    plt.figure(figsize = (20,10))
+    
     plt.subplot(1,2,1)
-    plt.plot(densities, global_cc, 'o-')
-    plt.title('global_cc - PDC')
-
+    plt.plot(densities, cc_eo, 'o-', label='EO')
+    plt.plot(densities, cc_ec, 'o-', label='EC')
+    plt.legend(loc='lower right', prop={'size': 20})
+    
     plt.subplot(1,2,2)
-    plt.plot(densities, avg_path, 'o-')
-    plt.title('avg_path - PDC')
-    #plt.show()
+    plt.plot(densities, avg_eo, 'o-', label='EO')
+    plt.plot(densities, avg_ec, 'o-', label='EC')
+    plt.legend(loc='lower right', prop={'size': 20})
+
     plt.savefig('results/' + filename + '.png')
     
 
@@ -81,21 +85,33 @@ def get_labels_nodes(number_of_nodes = 64):
 def topology(G, filename, adj):
     
     G= nx.relabel_nodes(G, dict(enumerate(get_labels_nodes(adj.shape[0]))))
+    
+    # color
+    for node in G.nodes():
+        if node in get_labels_nodes(number_of_nodes = 19):
+            color = 'red'
+        else:
+            color = '#b9c1d1'
+        G.node[node]['color'] = color
 
     # degree
     d = dict(nx.degree(G))
     plt.figure(num=None, figsize=(15,15), dpi=50)
-    nx.draw(G, nodelist= list(d.keys()), node_size=[v*40  for v in d.values()], with_labels = True, pos = get_coordinates())
+    nx.draw(G, nodelist= list(d.keys()), node_size=[v*100  for v in d.values()], with_labels = True, 
+            pos = get_coordinates(),  font_size=18, node_color=list(nx.get_node_attributes(G,'color').values()))
     plt.savefig('results/' + filename + '_degree' + '.png')
     
     # in degree
     d = dict(G.in_degree)
     plt.figure(num=None, figsize=(15,15), dpi=50)
-    nx.draw(G, nodelist= list(d.keys()), node_size=[v*40  for v in d.values()], with_labels = True, pos = get_coordinates())
+    nx.draw(G, nodelist= list(d.keys()), node_size=[v*100  for v in d.values()], with_labels = True, 
+            pos = get_coordinates(),  font_size=18, node_color=list(nx.get_node_attributes(G,'color').values()))
     plt.savefig('results/' + filename + '_in_degree' + '.png')
     
     # out degree
     d = dict(G.out_degree)
     plt.figure(num=None, figsize=(15,15), dpi=50)
-    nx.draw(G, nodelist= list(d.keys()), node_size=[v*40  for v in d.values()], with_labels = True, pos = get_coordinates())
+    nx.draw(G, nodelist= list(d.keys()), node_size=[v*100  for v in d.values()], with_labels = True, 
+            pos = get_coordinates(), font_size=18, node_color=list(nx.get_node_attributes(G,'color').values()))
+    #plt.show()
     plt.savefig('results/' + filename + '_out_degree' + '.png')
