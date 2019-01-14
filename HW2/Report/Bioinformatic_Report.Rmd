@@ -65,31 +65,7 @@ As last thing, we also want to compute all the previous graph indices considerin
 ## Part 3. Motif analysis
 
 In this section, we will cover the problem of detecting the presence of motifs in our networks.
-A motif is a configuration of $s$ nodes, that shows up in the graph a significant amount of times. More precisely, the idea behind the detection of motifs, is to understand whether the pattern in the graph is due to randomness, or it's a recurrent pattern that describes something in the phenomena we are interested in. Given a graph $G$ and a configuration of nodes $G_k$ we want to state that $G_k$ is a motif and we need to generate $\tilde{G} = \{\tilde{G_1},...,\tilde{G_N}\}$, that is a set of $N$ similar random graphs to $G$, i.e. all the nodes of each graph in $\tilde{G}$ must have the same degree of the original graph.
-Once obtained $\tilde{G}$, let's set the following quantities:
-
-- $f_{G}(G_k)$ = # of occurrencies of $G_k$ in $G$
-- $f'_{G}(G_k)$ = # of occurrencies of $G_k$ in $G$ that involves different nodes among them
-- $f_{\tilde{G}}(G_k)$ = average # of occurrencies of $G_k$ in $\tilde{G}$
-
-And the user must decide the following parameters [in square brackets the one chosen for this analysis]:
-
-- $s$ = Size of the motif [3 and 4]
-- $N$ = Number of random graphs [1000]
-- $p$ = Probability of over-representation [0.01]
-- $U$ = Uniqueness threshold [4]
-- $M$ = Ratio of over-representation [1.1]
-
-In order to define $G_k$ as a motif, the following must hold:
-
-- $P(f_{\tilde{G}}(G_k) > f_{G}(G_k)) < p$
-- $f'_{G}(G_k) > U$
-- $f_{G}(G_k) > M \cdot f_{\tilde{G}}(G_k)$
-
-Meanwhile, if we want to define an anti-motif, the following must hold:
-
-- $P(f_{\tilde{G}}(G_k) < f_{G}(G_k)) > 1-p$
-- $f_{G}(G_k) < f_{\tilde{G}}(G_k)/M$
+A motif is a configuration of $s$ nodes, that shows up in the graph a significant amount of times. More precisely, the idea behind the detection of motifs, is to understand whether the pattern in the graph is due to randomness, or it's a recurrent pattern that describes something in the phenomena we are interested in. The counterpart of the motif is the anti-motif, that has the same idea behind, but is a pattern that shows up in the network few times.
 
 **Size 3 Motifs**
 
