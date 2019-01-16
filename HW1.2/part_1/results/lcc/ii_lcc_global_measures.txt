@@ -1,0 +1,8 @@
+# of Nodes	104
+# of Edges	119
+Average Path Length	5.988237490664675
+Average Degree	2.2884615384615383
+Average Clustering Coefficient	0.013087606837606838
+Network Diameter	12
+Network Radius	6
+Centralization	None

@@ -1,0 +1,10 @@
+# of Nodes	288
+# of Edges	302
+# of Connected Components	11
+# of Isolated Nodes	0
+Average Path Length	Graph not connected
+Average Degree	2.0972222222222223
+Average Clustering Coefficient	0.004667785917785918
+Network Diameter	Graph not connected
+Network Radius	Graph not connected
+Centralization	None
