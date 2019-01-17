@@ -1,3 +1,6 @@
+import networkx as nx
+import pandas as pd
+
 # Initialize the gene list
 with open("seed_genes.txt","r") as f:
     genes = [gene.rstrip() for gene in f.readlines()]
@@ -15,8 +18,8 @@ G_ui = max(nx.connected_component_subgraphs(ui), key=len)
 
 ### LOUVAIN 
 
-partition_ii = ut.louvain(G_ii)
-partition_ui = ut.louvain(G_ui)
+cl_ii_lou = ut.louvain(G_ii)
+cl_ui_lou = ut.louvain(G_ui)
 
 
 ### MCL
@@ -62,14 +65,35 @@ for idx, c in enumerate(cl_ii_mcl):
 
 ### hypergeometric test - ui, Louvain
 
+r = df_ui.shape[0]
+for idx, c in enumerate(cl_ui_lou):
+    df_ui.loc[r+idx, 'cl_algo'] = 'Louvain'
+    df_ui.loc[r+idx, 'mod_id'] = idx
+    df_ui.loc[r+idx, 'n_sg'] = ut.hypergeom_test(c, genes, G_ui)[1]
+    df_ui.loc[r+idx, 'n_g'] = ut.hypergeom_test(c, genes, G_ui)[4]
+    df_ui.loc[r+idx, 'sg_id'] = list(set(genes).intersection(set(c)))
+    df_ui.loc[r+idx, 'g_id'] = list(set(c))
+    df_ui.loc[r+idx, 'p_value'] = ut.hypergeom_test(c, genes, G_ui)[0]
 
 ### hypergeometric test - ii, Louvain
+
+r = df_ii.shape[0]
+for idx, c in enumerate(cl_ii_lou):
+    df_ii.loc[r+idx, 'cl_algo'] = 'Louvain'
+    df_ii.loc[r+idx, 'mod_id'] = idx
+    df_ii.loc[r+idx, 'n_sg'] = ut.hypergeom_test(c, genes, G_ii)[1]
+    df_ii.loc[r+idx, 'n_g'] = ut.hypergeom_test(c, genes, G_ii)[4]
+    df_ii.loc[r+idx, 'sg_id'] = list(set(genes).intersection(set(c)))
+    df_ii.loc[r+idx, 'g_id'] = list(set(c))
+    df_ii.loc[r+idx, 'p_value'] = ut.hypergeom_test(c, genes, G_ii)[0]
 
 
 #save
 
-df_ui.to_csv('df_ui.csv')
-df_ii.to_csv('df_ii.csv')
+df_ui.to_csv('results/df_ui.csv')
+df_ii.to_csv('results/df_ii.csv')
+
 
 # get putative disease modules
-df_ui[(df_ui.n_g >= 10) & (df_ui.p_value < 0.05)]
+#df_ui[(df_ui.n_g >= 10) & (df_ui.p_value < 0.05)]
+

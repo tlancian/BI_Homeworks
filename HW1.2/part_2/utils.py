@@ -63,8 +63,12 @@ def MCL(G_lcc):
 def louvain(G_lcc):
     
     partition = community.best_partition(G_lcc)
+    clusters = [] 
+    for com in set(partition.values()) :
+        list_nodes = [nodes for nodes in partition.keys() if partition[nodes] == com]
+        clusters.append(list_nodes)
 
-    return(partition)
+    return(clusters)
 
 
 def hypergeom_test(mod, genes, G_lcc):
