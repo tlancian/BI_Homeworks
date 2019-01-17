@@ -70,3 +70,6 @@ for idx, c in enumerate(cl_ii_mcl):
 
 df_ui.to_csv('df_ui.csv')
 df_ii.to_csv('df_ii.csv')
+
+# get putative disease modules
+df_ui[(df_ui.n_g >= 10) & (df_ui.p_value < 0.05)]

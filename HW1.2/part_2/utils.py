@@ -74,9 +74,15 @@ def hypergeom_test(mod, genes, G_lcc):
     N = len(mod)
     x = len(set(genes).intersection(set(mod)))
     
-    pval = hypergeom.cdf(x, M, n, N)
+    pval = hypergeom.sf(x-1, M, n, N)
     
     return(pval, x, M, n, N)
+
+
+
+############### Reference
+
+# https://blog.alexlenail.me/understanding-and-implementing-the-hypergeometric-test-in-python-a7db688a7458
 
 
 
