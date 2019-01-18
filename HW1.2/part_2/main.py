@@ -1,6 +1,7 @@
 import networkx as nx
 import pandas as pd
 
+
 # Initialize the gene list
 with open("seed_genes.txt","r") as f:
     genes = [gene.rstrip() for gene in f.readlines()]
@@ -36,56 +37,23 @@ df_ii = pd.DataFrame(data=None, columns = col_lst)
 
 ### hypergeometric test - ui, MCL
 df_ui = pd.DataFrame(data=None, columns = col_lst)
-r = df_ui.shape[0]
-for idx, c in enumerate(cl_ui_mcl):
-    df_ui.loc[r+idx, 'cl_algo'] = 'MCL'
-    df_ui.loc[r+idx, 'mod_id'] = idx
-    df_ui.loc[r+idx, 'n_sg'] = ut.hypergeom_test(c, genes, G_ui)[1]
-    df_ui.loc[r+idx, 'n_g'] = ut.hypergeom_test(c, genes, G_ui)[4]
-    df_ui.loc[r+idx, 'sg_id'] = list(set(genes).intersection(set(c)))
-    df_ui.loc[r+idx, 'g_id'] = list(set(c))
-    df_ui.loc[r+idx, 'p_value'] = ut.hypergeom_test(c, genes, G_ui)[0]
-
+df_ui = ut.fill_df(df_ui, cl_ui_mcl, G_ui, genes, 'MCL')
        
         
 
 ### hypergeometric test - ii, MCL
 
 df_ii = pd.DataFrame(data=None, columns = col_lst)
-r = df_ii.shape[0]
-for idx, c in enumerate(cl_ii_mcl):
-    df_ii.loc[r+idx, 'cl_algo'] = 'MCL'
-    df_ii.loc[r+idx, 'mod_id'] = idx
-    df_ii.loc[r+idx, 'n_sg'] = ut.hypergeom_test(c, genes, G_ii)[1]
-    df_ii.loc[r+idx, 'n_g'] = ut.hypergeom_test(c, genes, G_ii)[4]
-    df_ii.loc[r+idx, 'sg_id'] = list(set(genes).intersection(set(c)))
-    df_ii.loc[r+idx, 'g_id'] = list(set(c))
-    df_ii.loc[r+idx, 'p_value'] = ut.hypergeom_test(c, genes, G_ii)[0]
+df_ii = ut.fill_df(df_ii, cl_ii_mcl, G_ii, genes, 'MCL')
 
 
 ### hypergeometric test - ui, Louvain
 
-r = df_ui.shape[0]
-for idx, c in enumerate(cl_ui_lou):
-    df_ui.loc[r+idx, 'cl_algo'] = 'Louvain'
-    df_ui.loc[r+idx, 'mod_id'] = idx
-    df_ui.loc[r+idx, 'n_sg'] = ut.hypergeom_test(c, genes, G_ui)[1]
-    df_ui.loc[r+idx, 'n_g'] = ut.hypergeom_test(c, genes, G_ui)[4]
-    df_ui.loc[r+idx, 'sg_id'] = list(set(genes).intersection(set(c)))
-    df_ui.loc[r+idx, 'g_id'] = list(set(c))
-    df_ui.loc[r+idx, 'p_value'] = ut.hypergeom_test(c, genes, G_ui)[0]
+df_ui = ut.fill_df(df_ui, cl_ui_lou, G_ui, genes, 'Louvain')
 
 ### hypergeometric test - ii, Louvain
 
-r = df_ii.shape[0]
-for idx, c in enumerate(cl_ii_lou):
-    df_ii.loc[r+idx, 'cl_algo'] = 'Louvain'
-    df_ii.loc[r+idx, 'mod_id'] = idx
-    df_ii.loc[r+idx, 'n_sg'] = ut.hypergeom_test(c, genes, G_ii)[1]
-    df_ii.loc[r+idx, 'n_g'] = ut.hypergeom_test(c, genes, G_ii)[4]
-    df_ii.loc[r+idx, 'sg_id'] = list(set(genes).intersection(set(c)))
-    df_ii.loc[r+idx, 'g_id'] = list(set(c))
-    df_ii.loc[r+idx, 'p_value'] = ut.hypergeom_test(c, genes, G_ii)[0]
+df_ii = ut.fill_df(df_ii, cl_ii_lou, G_ii, genes, 'Louvain')
 
 
 #save

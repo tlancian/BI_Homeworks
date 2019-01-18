@@ -89,9 +89,16 @@ def hypergeom_test(mod, genes, G_lcc):
 # https://blog.alexlenail.me/understanding-and-implementing-the-hypergeometric-test-in-python-a7db688a7458
 
 
-
-def find_modules(clusters):
-    modules = [i for i in clusters if len(i) >=10]
+def fill_df(df, clusters, G_lcc, genes, algo):
+    r = df.shape[0]
+    for idx, c in enumerate(clusters):
+        df.loc[r+idx, 'cl_algo'] = algo
+        df.loc[r+idx, 'mod_id'] = r + idx
+        df.loc[r+idx, 'n_sg'] = hypergeom_test(c, genes, G_lcc)[1]
+        df.loc[r+idx, 'n_g'] = hypergeom_test(c, genes, G_lcc)[4]
+        df.loc[r+idx, 'sg_id'] = list(set(genes).intersection(set(c)))
+        df.loc[r+idx, 'g_id'] = list(set(c))
+        df.loc[r+idx, 'p_value'] = hypergeom_test(c, genes, G_lcc)[0]
     
-    return(modules)
+    return(df)
 
