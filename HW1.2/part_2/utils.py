@@ -80,7 +80,7 @@ def create_table(file, lou_mod, mcl_mod):
     if not put_mod.empty:
         
         for index, row in put_mod.iterrows():
-            with open("../part_3/"+file+"_"+str(row["Id"])+".txt", "w") as f:
+            with open("../part_3/putative_disease_modules/"+file+"_"+str(row["Id"])+".txt", "w") as f:
                 f.writelines("%s\n" % l for l in list(row["List of Seed Genes"].union(row["List of Non-Seed Genes"])))
                 f.close()
     
