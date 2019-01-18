@@ -1,5 +1,6 @@
 import networkx as nx
 import pandas as pd
+import pickle
 
 def read_graph(file):
     
@@ -17,6 +18,10 @@ def graph_global_measures(graph, file, cc = False):
     
     if cc:
         graph = max(nx.connected_component_subgraphs(graph), key=len)
+        with open("results/lcc/"+file+"_lcc.pickle","wb") as f:
+            pickle.dump(graph, f)
+            f.close()
+                
         measures = ["# of Nodes", "# of Edges", "Average Path Length", "Average Degree", "Average Clustering Coefficient",
                 "Network Diameter", "Network Radius", "Centralization"]
         path = "results/lcc/"+file+"_lcc_global_measures.txt"
@@ -28,7 +33,7 @@ def graph_global_measures(graph, file, cc = False):
     nodes = len(graph.nodes())
     
     if nodes < 20:
-        with open(file, "w") as f:
+        with open(path, "w") as f:
             f.write("The graph has less than 20 nodes.")
             f.close()
             return

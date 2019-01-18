@@ -1,104 +1,96 @@
+import pickle
 import networkx as nx
 import pandas as pd
 import markov_clustering as mc
 import community
-import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import hypergeom
 
-### TODO: nella funzione louvain, return i cluster e non la partizione
-
 def read_graph(file):
     
-    G = nx.Graph()
-    
-    with open("../interactomes/"+file+".tsv", "r") as f:
-        for row in f.readlines()[1:]:
-            edge = row[:-1].split("\t")
-            G.add_edge(edge[0],edge[1])
-    
-    return G
+    with open("../part_1/results/lcc/" + file + "_lcc.pickle","rb") as f:
+        return pickle.load(f)
 
 
-def find_best_inflation(mat):
+def mcl(graph):
     
-    infl_lst = []
-    for inflation in [i/10 for i in range(15, 26)]:
+    mat = nx.to_numpy_matrix(graph)
+    
+    mod = -1
+    
+    for val in np.arange(1.2,3,0.1):
         
-        result = mc.run_mcl(mat, inflation=inflation)
-        clusters = mc.get_clusters(result)
-        Q = mc.modularity(matrix=np.asmatrix(result), clusters=clusters)
-        infl_lst.append((Q, inflation))
+        res = mc.run_mcl(mat, inflation=val)
+        clust = mc.get_clusters(res)
+        q = mc.modularity(matrix=np.asmatrix(res), clusters=clust)
+        if q > mod:
+            clusters = clust
     
-    return(max(infl_lst)[1])
-
-def get_labels(G_lcc, clusters):
+    labels = dict(zip(range(len(graph)),graph.nodes()))
     
-    # map node name to numbers
-    lbls = {}
-    for k in range(len(G_lcc)):
-        lbls[k] = list(G_lcc.nodes())[k]
-
-    # use labels
-    for i in range(len(clusters)):
-        clusters[i] = [lbls.get(item, item) for item in clusters[i]]
-    
-    return(clusters)
-
-
-def MCL(G_lcc):
-    
-    mat = nx.to_numpy_matrix(G_lcc)
-    
-    # find best inflation
-    max_infl = find_best_inflation(mat)
-    
-    result = mc.run_mcl(mat, inflation = max_infl)
-    clusters = mc.get_clusters(result)
-    
-    # return name of genes
-    return(get_labels(G_lcc, clusters))
+    return [[labels.get(item) for item in clust] for clust in clusters]
 
 
 def louvain(G_lcc):
     
     partition = community.best_partition(G_lcc)
-    clusters = [] 
-    for com in set(partition.values()) :
-        list_nodes = [nodes for nodes in partition.keys() if partition[nodes] == com]
-        clusters.append(list_nodes)
-
-    return(clusters)
+    return [[nodes for nodes in partition.keys() if partition[nodes] == com] for com in set(partition.values())]
 
 
-def hypergeom_test(mod, genes, G_lcc):
+def check_length_mod(mod):
+    if len(mod) >= 10:
+        return True
+
+def hypergeom_test(graph, mod):
     
-    M = len(G_lcc.nodes())
-    n = len(genes)
+    # Initialize the gene list
+    with open("../../HW1/seed_genes.txt","r") as f:
+        genes = [gene.rstrip() for gene in f.readlines()]
+    
+    M = len(graph.nodes())
+    n = len(set(genes).intersection(set(graph.nodes())))
     N = len(mod)
     x = len(set(genes).intersection(set(mod)))
     
     pval = hypergeom.sf(x-1, M, n, N)
     
-    return(pval, x, M, n, N)
+    return [x, N, set(genes).intersection(set(mod)), set(mod).difference(set(genes)), pval]
+
+
+
+    
+    
+def create_table(file, lou_mod, mcl_mod):
+    
+    lou_mod = [["Louvain"]+elem for elem in lou_mod]
+    mcl_mod = [["MCL"]+elem for elem in mcl_mod]
+    
+    mods = lou_mod + mcl_mod
+    
+    cols = ["Clustering Algorithm", "Number of Seed Genes", "Number of Genes", "List of Seed Genes", "List of Non-Seed Genes", "P-Value"]
+    
+    table = pd.DataFrame(data = mods, columns = cols)
+    table["Id"] = np.arange(1, table.shape[0]+1)
+    
+    table.to_excel("results/"+file+".xlsx")
+    
+    
+    put_mod = table[table["P-Value"] < 0.05]
+    
+    if not put_mod.empty:
+        
+        for index, row in put_mod.iterrows():
+            with open("../part_3/"+file+"_"+str(row["Id"])+".txt", "w") as f:
+                f.writelines("%s\n" % l for l in list(row["List of Seed Genes"].union(row["List of Non-Seed Genes"])))
+                f.close()
+    
+    return table
+
+
+
 
 
 
 ############### Reference
 
 # https://blog.alexlenail.me/understanding-and-implementing-the-hypergeometric-test-in-python-a7db688a7458
-
-
-def fill_df(df, clusters, G_lcc, genes, algo):
-    r = df.shape[0]
-    for idx, c in enumerate(clusters):
-        df.loc[r+idx, 'cl_algo'] = algo
-        df.loc[r+idx, 'mod_id'] = r + idx
-        df.loc[r+idx, 'n_sg'] = hypergeom_test(c, genes, G_lcc)[1]
-        df.loc[r+idx, 'n_g'] = hypergeom_test(c, genes, G_lcc)[4]
-        df.loc[r+idx, 'sg_id'] = list(set(genes).intersection(set(c)))
-        df.loc[r+idx, 'g_id'] = list(set(c))
-        df.loc[r+idx, 'p_value'] = hypergeom_test(c, genes, G_lcc)[0]
-    
-    return(df)
-
