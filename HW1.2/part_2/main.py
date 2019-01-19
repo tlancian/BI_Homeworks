@@ -22,3 +22,10 @@ ui_mcl = map(lambda x : ut.hypergeom_test(ui,x) ,filter(ut.check_length_mod, ut.
 ii_mod = ut.create_table("ii_mod", list(ii_lou), list(ii_mcl))
 ui_mod = ut.create_table("ui_mod", list(ui_lou), list(ui_mcl))
 
+
+
+# Visualize clusters 
+
+ut.louvain(ii, 'ii', viz=True)
+ut.louvain(ui, 'ui', viz=True)
+

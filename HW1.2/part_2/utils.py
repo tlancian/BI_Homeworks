@@ -5,6 +5,8 @@ import markov_clustering as mc
 import community
 import numpy as np
 from scipy.stats import hypergeom
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 def read_graph(file):
     
@@ -31,10 +33,29 @@ def mcl(graph):
     return [[labels.get(item) for item in clust] for clust in clusters]
 
 
-def louvain(G_lcc):
+def louvain(G_lcc, filename, viz=False):
     
     partition = community.best_partition(G_lcc)
-    return [[nodes for nodes in partition.keys() if partition[nodes] == com] for com in set(partition.values())]
+    clusters = [[nodes for nodes in partition.keys() if partition[nodes] == com] for com in set(partition.values())]
+    
+    if viz == False:
+    
+        return(clusters)
+    
+    else:
+        
+        plt.figure(num=None, figsize=(15,15), dpi=50)
+        pos = nx.spring_layout(G_lcc)
+        col = sns.color_palette("husl", len(clusters))
+        
+        for idx,c in enumerate(clusters):
+            nx.draw_networkx_nodes(G_lcc, pos, nodelist=clusters[idx], node_color=col[idx])
+            
+        nx.draw_networkx_edges(G_lcc, pos, alpha=0.5)
+        plt.savefig('results/' + filename + '_louvain.png')
+        
+        
+
 
 
 def check_length_mod(mod):
