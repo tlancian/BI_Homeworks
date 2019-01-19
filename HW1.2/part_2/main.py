@@ -28,4 +28,6 @@ ui_mod = ut.create_table("ui_mod", list(ui_lou), list(ui_mcl))
 
 ut.louvain(ii, 'ii', viz=True)
 ut.louvain(ui, 'ui', viz=True)
+ut.mcl(ii, viz=True)
+ut.mcl(ui, viz=True)
 

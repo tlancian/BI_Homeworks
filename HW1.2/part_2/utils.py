@@ -14,7 +14,7 @@ def read_graph(file):
         return pickle.load(f)
 
 
-def mcl(graph):
+def mcl(graph, viz=False):
     
     mat = nx.to_numpy_matrix(graph)
     
@@ -28,9 +28,18 @@ def mcl(graph):
         if q > mod:
             clusters = clust
     
-    labels = dict(zip(range(len(graph)),graph.nodes()))
+    if viz == False:
+        
+        labels = dict(zip(range(len(graph)),graph.nodes()))
+
+        return[[labels.get(item) for item in clust] for clust in clusters]
     
-    return [[labels.get(item) for item in clust] for clust in clusters]
+    else:
+        
+        plt.figure(num=None, figsize=(20,20), dpi=50)
+        pos = nx.spring_layout(graph)
+        mc.draw_graph(mat, clusters, node_size=200, with_labels=False, edge_color="silver")
+        #plt.savefig('results/' + filename + '.png')
 
 
 def louvain(G_lcc, filename, viz=False):

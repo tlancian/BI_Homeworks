@@ -162,3 +162,8 @@ Table: Local indices for 20 highest ranking genes for betweenness, U-LCC
 
 
 ![Louvain clustering](Fig3.png)
+
+
+
+
+![MCL clustering](Fig4.png)
