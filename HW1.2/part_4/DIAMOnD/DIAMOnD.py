@@ -323,7 +323,7 @@ def diamond_iteration_of_first_X_nodes(G,S,X,alpha):
         info = {}
     
         pmin = 10
-        next_node = "nix"
+        next_node = 'nix'
         reduced_not_in_cluster = reduce_not_in_cluster_nodes(all_degrees,
                                                              neighbors,G,
                                                              not_in_cluster,
