@@ -15,3 +15,10 @@ ut.graph_global_measures(ui, "ui")
 ut.graph_global_measures(ii, "ii", True)
 ut.graph_global_measures(sgi, "sgi", True)
 ut.graph_global_measures(ui, "ui", True)
+
+
+  
+# Visualize graph 
+ut.viz_graph(sgi, 'sgi')
+ut.viz_graph(ii, 'ii', cc=True)
+ut.viz_graph(ui, 'ui', cc=True)

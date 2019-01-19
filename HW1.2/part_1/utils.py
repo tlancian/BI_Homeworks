@@ -1,6 +1,8 @@
 import networkx as nx
 import pandas as pd
 import pickle
+import matplotlib.pyplot as plt
+
 
 def read_graph(file):
     
@@ -97,3 +99,18 @@ def lcc_local_measures(graph):
 
 
     
+def viz_graph(G, filename, cc = False):
+    
+    if cc:
+        G = max(nx.connected_component_subgraphs(G), key=len)
+        plt.figure(num=None, figsize=(15,15), dpi=50)
+        nx.draw(G, node_size=500,  node_color='#8b9dc3')
+        plt.savefig('results/images/' + filename + '.png')
+    
+    
+    else:
+        plt.figure(num=None, figsize=(15,15), dpi=50)
+        nx.draw(G, with_labels=True, node_size=1000, font_size=18, node_color='#8b9dc3')
+        plt.savefig('results/images/' + filename + '.png')
+        
+        
