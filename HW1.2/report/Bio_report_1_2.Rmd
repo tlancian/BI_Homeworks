@@ -22,9 +22,7 @@ Since we are talking about interactions among genes, we can represent the intera
 
 ## Part 1. Calculate the main network measures for SGI, I and U
 
-In this section we want to focus on graph indices, either global and local measures. In order to compute all the indices, we used the library `networkx` in Python, created to efficiently deal with graphs. We developed those analysis only on graphs with more than 20 nodes, condition respected only by U and I interactomes. Even if the SGI graph will not be considered, we provided a graphical representation in **Figure 1**. As we can see in **Table 1** some measures (as the average path length or network diameter) can not be evaluated since we are dealing with more than one component per graph. This is why we focused on the largest connected component (LCC) for union and intersection interactomes (**Figure 2**) and we evaluates some global inidices (results in **Table 2**). Local results as the node degree and centrality measures have been stored in a table in the attached folder. We just report in **Table 3** (for I-LCC) and in **Table 4** (for U-LCC) the local results for the 20 highest ranking genes for betweenness.
-
-**INTERPRETAZIONE**
+In this section we want to focus on graph indices, either global and local measures. In order to compute all the indices, we used the library `networkx` in Python, created to efficiently deal with graphs. We developed those analysis only on graphs with more than 20 nodes, condition respected only by U and I interactomes. Even if the SGI graph will not be considered, we provided a graphical representation in **Figure 1**. As we can see in **Table 1** some measures (as the average path length or network diameter) can not be evaluated since we are dealing with more than one component per graph. This is why we focused on the largest connected component (LCC) for union and intersection interactomes (**Figure 2**) and we evaluates some global inidices (results in **Table 2**). Local results as the node degree and centrality measures have been stored in a table in the attached folder. We just report in **Table 3** (for I-LCC) and in **Table 4** (for U-LCC) the local results for the 20 highest ranking genes for betweeness. The betweeness is a centrality measure that underlines the importance of a node in the graph: an high value for a node means considerable influence within a network and remove that node from the graph may disrupt communications between other vertices since a lot of shortest paths pass through it. As we can see from the table, the rankings does not change a lot between I-LCC and U-LCC and do not seem to be a strong correlation with the other indeces. 
 
 
 ## Part 2. Apply clustering methods for disease modules discovery
@@ -35,9 +33,7 @@ Once we obtained the largest connected component for both I and U graphs, we can
 
 - *Markov Clustering (MCL)*: the main idea of this algorithm is that, starting from a node and then randomly travel to a connected node, it is more likely to stay within a cluster than travel between. The MCL algorithm is based on random walks evaluated through Markov Chains. 
 
-The results are shown in **Figure 3** and **Figure 4**.
-
-**INTERPRETAZIONE**
+The results are shown in **Figure 3** and **Figure 4**. What comes out is that considering union largest connected component the two algorithms produce more clusters than intersection LCC: in partucilar, Louvain algorithm produces 7 and 9 modules for, respectively, intersection and union while MCL algorithm produces 9 and 13 clusters. 
 
 Now, applying an hypergeometric test we can explore the modules in each configuration, looking for the one statistically enriched. For each cluster belonging to each algorithm, we will evaluate an hypergeometric test with the following parameters:
 
@@ -49,13 +45,12 @@ Now, applying an hypergeometric test we can explore the modules in each configur
 
 - *x*, the number of seed genes in the module.
 
-Assuming the null hypothesis as "seed genes are not statistically overrepresented in a specific cluster", if the *p-value* will be $\leq 0.05$ then we can reject the null hypothesis. We selected modules with more than 10 nodes and with a p-value $\leq 0.05$ and we consider those modules as putative disease modules: the results are in **Table 5**.
-
-**INTERPRETAZIONE**
+Assuming the null hypothesis as "seed genes are not statistically overrepresented in a specific cluster", if the *p-value* will be $\leq 0.05$ then we can reject the null hypothesis. We selected modules with more than 10 nodes and with a p-value $\leq 0.05$ and we consider those modules as putative disease modules: the results are in **Table 5**. We found only a module that respected those properties and it belongs to the union LCC and it has been created through Louvain algorithm.
 
 
 
 ## Part 3. Carry on an enrichment analysis on the disease modules
+
 
 
 ## Part 4. Find putative disease proteins using the DIAMOnD tool
@@ -145,6 +140,16 @@ Table: Local indices for 20 highest ranking genes for betweenness, I-LCC
 Table: Local indices for 20 highest ranking genes for betweenness, U-LCC
 
 
+|                        |                                      Putative disease module                                      |
+|:----------------------:|:-------------------------------------------------------------------------------------------------:|
+|        Module id       |                                                 1                                                 |
+|  Clustering Algorithm  |                                              Louvain                                              |
+|  Number of seed genes  |                                                 4                                                 |
+|     Number of genes    |                                                 16                                                |
+|   List of seed genes   |                                    [CDY1B, TSPY1, KDM5D, CDY1]                                    |
+| List of non seed genes | [HIST1H4A, PCGF6, UBC, HIST2H2AC, EEF1A1, CSNK2A1, AR,  KMT2A, REV3L, HIST3H3, HIST2H2BE, EEF1A2] |
+|         p-value        |                                               0,034                                              
+Table: Putative disease module
 
 
 
