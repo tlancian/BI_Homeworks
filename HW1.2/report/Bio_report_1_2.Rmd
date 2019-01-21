@@ -8,7 +8,7 @@ fontsize: 11pt
 
 ## Abstract
 
-The aim of this work is to deeper analyze through some specific network measures the structure of seed genes interactomes (SGI), intersection (I) and union (U) interactomes, remembering that:
+Networks are a powerful representation of interactomes, and its properties can be fully exploited to get significant results. Our starting point has been the interactomes found in our previous work:
 
 - *Seed Genes Interactome* contains only interactions among seed genes;
 
@@ -16,51 +16,23 @@ The aim of this work is to deeper analyze through some specific network measures
 
 - *Intersection Interactome* contains interactions that involve at least one seed gene, and that are present in both belonging to Biogrid and IID datasets.
 
-Since we are talking about interactions among genes, we can represent the interactomes with graphs, analyze their properties and try to find clusters to underline possible disease modules. Finally we also exploited DIAMonD tool to find putative disease proteins. All the files and codes involved in this work are available  in the attached folder or at
-[https://github.com/tlancian/BI_Homeworks](https://github.com/tlancian/BI_Homeworks).
+We have conducted a explorative analysis of the networks, through the computation of many indices. Furthermore, we have looked up for structure in these networks that can have an important role in the context of the Chromosome Y. In this work we have also exploited DIAMonD, a tool that find putative disease proteins. All the files and codes involved in this work are available in the attached folder or at [https://github.com/tlancian/BI_Homeworks](https://github.com/tlancian/BI_Homeworks).
 
 
-## Part 1. Calculate the main network measures for SGI, I and U
-
-In this section we want to focus on graph indices, either global and local measures. In order to compute all the indices, we used the library `networkx` in Python, created to efficiently deal with graphs. We developed those analysis only on graphs with more than 20 nodes, condition respected only by U and I interactomes. Even if the SGI graph will not be considered, we provided a graphical representation in **Figure 1**. As we can see in **Table 1** some measures (as the average path length or network diameter) can not be evaluated since we are dealing with more than one component per graph. This is why we focused on the largest connected component (LCC) for union and intersection interactomes (**Figure 2**) and we evaluates some global inidices (results in **Table 2**). Local results as the node degree and centrality measures have been stored in a table in the attached folder. We just report in **Table 3** (for I-LCC) and in **Table 4** (for U-LCC) the local results for the 20 highest ranking genes for betweeness. The betweeness is a centrality measure that underlines the importance of a node in the graph: an high value for a node means considerable influence within a network and remove that node from the graph may disrupt communications between other vertices since a lot of shortest paths pass through it. As we can see from the table, the rankings does not change a lot between I-LCC and U-LCC and do not seem to be a strong correlation with the other indeces. 
+## Network measures
 
 
-## Part 2. Apply clustering methods for disease modules discovery
+In this section we want to focus on graph indices, either global and local measures. In order to compute all the indices, we used the library `networkx` in Python, created to efficiently deal with graphs.
 
-Once we obtained the largest connected component for both I and U graphs, we can use two different clustering algorithms to get modules from them:
+We developed those analysis only on graphs with more than 20 nodes, condition respected only by U and I interactomes. Even if the SGI graph will not be considered, we provided a graphical representation in **Figure 1**. It is clear that the network is very sparse, thus every indices would be really uninformative.
 
-- *Louvain*: it is a method to extract communities from large networks. Basically, first small communities are found by optimizing modularity locally on all nodes, then each small community is grouped into one node and the first step is repeated. 
-
-- *Markov Clustering (MCL)*: the main idea of this algorithm is that, starting from a node and then randomly travel to a connected node, it is more likely to stay within a cluster than travel between. The MCL algorithm is based on random walks evaluated through Markov Chains. 
-
-The results are shown in **Figure 3** and **Figure 4**. What comes out is that considering union largest connected component the two algorithms produce more clusters than intersection LCC: in partucilar, Louvain algorithm produces 7 and 9 modules for, respectively, intersection and union while MCL algorithm produces 9 and 13 clusters. 
-
-Now, applying an hypergeometric test we can explore the modules in each configuration, looking for the one statistically enriched. For each cluster belonging to each algorithm, we will evaluate an hypergeometric test with the following parameters:
-
-- *M*, the populazion size, so the total number of genes;
-
-- *N*, the number of genes in the module;
-
-- *n*, the total number of seed genes in the population;
-
-- *x*, the number of seed genes in the module.
-
-Assuming the null hypothesis as "seed genes are not statistically overrepresented in a specific cluster", if the *p-value* will be $\leq 0.05$ then we can reject the null hypothesis. We selected modules with more than 10 nodes and with a p-value $\leq 0.05$ and we consider those modules as putative disease modules: the results are in **Table 5**. We found only a module that respected those properties and it belongs to the union LCC and it has been created through Louvain algorithm.
+![Seed genes interactome](Fig1.png){ width=50% }
 
 
-
-## Part 3. Carry on an enrichment analysis on the disease modules
-
+Instead, in **Table 1** have been reported the main global indices for U and I. As a first remark, some of the measures does not appear in the table, since the network is not fully connected, thus we are dealing with more than one connected component per graph. Even though U has more nodes and edges, its indices resulted very similar to the one of I, meaning that the underlying structure of the network is quite common.
 
 
-## Part 4. Find putative disease proteins using the DIAMOnD tool
-
-
-\newpage
-
-## Tables
-
-|            Measures            | Intersection Interactome | Union Interactome |
+|            Measures            | I | U |
 |:------------------------------:|:------------------------:|:-----------------:|
 |           # of Nodes           |            199           |        288        |
 |           # of Edges           |            204           |        302        |
@@ -71,9 +43,16 @@ Assuming the null hypothesis as "seed genes are not statistically overrepresente
 | Average Clustering Coefficient |          0.0068          |       0.0046      |
 |        Network Diameter        |             -            |         -         |
 |         Network Radius         |             -            |         -         |
-|         Centralization         |           None           |        None       |
-Table: global measures for Intersection and Union interactomes
+|         Centralization         |          0.1272           |        0.1014       |
+Table: Global measures for I and U
 
+
+In order to get more meaningful results, we focused our attention on the largest connected component (LCC) for both the interactomes. A graphical representation of the resulting networks is reported in **Figure 2**, and their relative global indiceshave been reported in **Table 2**.
+
+
+![Intersection and Union LCC ](Fig2.png){ width=70% }
+
+In this scenario, is more evident how the 2 networks, shares a common structure. Except for the number of nodes, and the number of edges, all the indices are very close to each other. This can be related to some discrepancies between Biogrid and IID, in particular related to genes that in the network has a single connection to a central gene.The lack of this connection does not change substatially the structure of the network.
 
 
 |            Measures            | I - LCC | U - LCC |
@@ -85,9 +64,13 @@ Table: global measures for Intersection and Union interactomes
 | Average Clustering Coefficient |  0.013  |  0.008  |
 |        Network Diameter        |    12   |    12   |
 |         Network Radius         |    6    |    7    |
-|         Centralization         |   None  |   None  |
-Table: global measures for Intersection and Union LCC
+|         Centralization         |   0.2446  |   0.1797  |
+Table: Global measures for I-LCC and U-LCC
 
+
+Once obtained these networks, also local indices have been computed, in particular centrality measures. In **Table 3** (for I-LCC) and in **Table 4** (for U-LCC) have been listed the centrality measures for the 20 highest ranking genes for betweeness centrality. The betweeness is a centrality measure that underlines how many connections among nodes in the graph must pass through a single node.
+
+The rankings are quite similar, but it is interesting to notice that many nodes that has an higher betweenness centraliity, has a small degree. In fact, they are exactly what betweenness look for, nodes that works like bridges among different sub-structures in the network. This information is well represented by the ratio Betweenness/Degree reported in the last column of the tables.
 
 
 |         | degree | betweenness | eigenvector | closeness |  ratio |
@@ -140,35 +123,174 @@ Table: Local indices for 20 highest ranking genes for betweenness, I-LCC
 Table: Local indices for 20 highest ranking genes for betweenness, U-LCC
 
 
-|                        |                                      Putative disease module                                      |
-|:----------------------:|:-------------------------------------------------------------------------------------------------:|
-|        Module id       |                                                 1                                                 |
-|  Clustering Algorithm  |                                              Louvain                                              |
-|  Number of seed genes  |                                                 4                                                 |
-|     Number of genes    |                                                 16                                                |
-|   List of seed genes   |                                    [CDY1B, TSPY1, KDM5D, CDY1]                                    |
-| List of non seed genes | [HIST1H4A, PCGF6, UBC, HIST2H2AC, EEF1A1, CSNK2A1, AR,  KMT2A, REV3L, HIST3H3, HIST2H2BE, EEF1A2] |
-|         p-value        |                                               0,034                                              
-Table: Putative disease module
+## Disease Modules Detection
 
+Another interesting task, is the one of community detection. For this, we have exploited two different algorithms:
 
+- *Louvain*: it is a method to extract communities from large networks. Basically, first small communities are found by optimizing modularity locally on all nodes, then each small community is grouped into one node and the first step is repeated. 
 
-\newpage
+- *Markov Clustering (MCL)*: the main idea of this algorithm is that, starting from a node and then randomly travel to a connected node, it is more likely to stay within a cluster than travel between. The MCL algorithm is based on random walks evaluated through Markov Chains.
 
-
-## Figures
-
-![Seed genes interactome](Fig1.png)
-
-
-
-![Intersection and Union LCC ](Fig2.png)
-
-
+The results are shown in **Figure 3** and **Figure 4**, and they are nothing surprising, given that is was already visible in **Figure 2** that the networks had a well-defined community structure. To notice by the way, how the MCL clustering method produces a more refined partition of the network.
 
 ![Louvain clustering](Fig3.png)
 
 
-
-
 ![MCL clustering](Fig4.png)
+
+
+Applying an hypergeometric test, we can explore the modules in each configuration, looking for the one statistically enriched, i.e. the one that contains a significative number of seed genes.
+
+Assuming the null hypothesis as "seed genes are not statistically overrepresented in a specific cluster", if the *p-value* will be $\leq 0.05$ then we can reject the null hypothesis. We selected modules with more than 10 nodes and with a p-value $\leq 0.05$ and we consider those modules as **putative disease modules**. The results of the hypergeometric test are shown in **Table 5**. We found only a module that respected those properties, that is the N. 1 of the U-LCC.
+
+
+| Id | Algorithm | Seed Genes | Total Genes | SG Ratio | P-Value |
+|----|:---------:|:----------:|:-----------:|:--------:|:--------:|
+| 1 | Louvain | 1 | 16 | 0,0625 | 0,827069 |
+| 2 | Louvain | 1 | 11 | 0,09 | 0,690455 |
+| 3 | Louvain | 2 | 20 | 0,1 | 0,612131 |
+| 4 | Louvain | 2 | 10 | 0,2 | 0,246081 |
+| 5 | Louvain | 1 | 27 | 0,037 | 0,957971 |
+| 6 | MCL | 1 | 16 | 0,0625 | 0,827069 |
+| 7 | MCL | 1 | 11 | 0,09 | 0,690455 |
+| 8 | MCL | 2 | 10 | 0,2 | 0,246081 |
+| 9 | MCL | 1 | 16 | 0,0625 | 0,827069 |
+| 10 | MCL | 1 | 27 | 0,037 | 0,957971 |
+Table: Candidates Putative disease module - I-LCC
+
+| Id | Algorithm | Seed Genes | Total Genes | SG Ratio | P-Value |
+|----|:---------:|:----------:|:-----------:|:--------:|:--------:|
+| 1 | Louvain | 4 | 16 | 0,25 | 0,03425 |
+| 2 | Louvain | 1 | 21 | 0,047 | 0,867177 |
+| 3 | Louvain | 1 | 23 | 0,043 | 0,89216 |
+| 4 | Louvain | 1 | 14 | 0,071 | 0,730976 |
+| 5 | Louvain | 2 | 15 | 0,13 | 0,377092 |
+| 6 | Louvain | 2 | 29 | 0,068 | 0,753428 |
+| 7 | Louvain | 1 | 31 | 0,032 | 0,954638 |
+| 8 | MCL | 1 | 21 | 0,047 | 0,867177 |
+| 9 | MCL | 1 | 23 | 0,043 | 0,89216 |
+| 10 | MCL | 1 | 14 | 0,071 | 0,730976 |
+| 11 | MCL | 2 | 15 | 0,13 | 0,377092 |
+| 12 | MCL | 1 | 21 | 0,047 | 0,867177 |
+| 13 | MCL | 1 | 31 | 0,032 | 0,954638 |
+Table: Candidates Putative disease module - U-LCC
+
+\newpage
+
+## Enrichment Analysis
+
+In this section, an enrichment analysis over the only putative disease module, has been conducted. For this task, we have again exploited the tool released by InnateDB. In **Table 6** and **Table 7** we report the results obtained either for the overrepresented GO categories and overrepresented pathways.
+
+| Pathway Name | Pathway p-value (corrected) |
+|:--------------------------------------------------:|:---------------------------:|
+| eukaryotic translation elongation factor 1 complex | 0,000346 |
+| nucleus | 0,000477 |
+| nucleosome assembly | 0,000559 |
+| DNA binding | 0,001175 |
+| seminiferous tubule development | 0,001265 |
+| nucleosome | 0,001684 |
+| sex differentiation | 0,003306 |
+| translation elongation factor activity | 0,003436 |
+| PcG protein complex | 0,004128 |
+| POU domain binding | 0,012156 |
+Table: GO Over-Represented Analysis for Putative Disease Module
+
+
+| Pathway Name | Pathway p-value (corrected) |
+|:----------------------------------------------------------------------:|:---------------------------:|
+| RNF mutants show enhanced WNT signaling and proliferation | 5,42E-06 |
+| TCF dependent signaling in response to WNT | 5,42E-06 |
+| XAV939 inhibits tankyrase, stabilizing AXIN | 5,42E-06 |
+| misspliced LRP5 mutants have enhanced beta-catenin-dependent signaling | 5,42E-06 |
+| Signaling by WNT in cancer | 7,34E-06 |
+| Cellular responses to stress | 9,64E-06 |
+| M Phase | 1,8E-05 |
+| Signaling by Wnt | 1,97E-05 |
+| Packaging Of Telomere Ends | 2,18E-05 |
+| Condensation of Prophase Chromosomes | 5E-05 |
+Table: Pathway Over-Represented Analysis for Putative Disease Module
+
+## Putative Disease Proteins detection [DIAMOnD]
+
+DIAMOnD is a tool released by Susan Dina Ghiassian, Joerg Menche & Albert-Laszlo Barabasi, and it is more properly the implementation of the algorithm they present in their paper "A DIseAse MOdule Detection (DIAMOnD) Algorithm derived from a systematic analysis of connectivity patterns of disease proteins in the Human Interactome".
+
+It allows to detect the full disease module around a set of known disease proteins. In this work we have exploited it, using as network the latest release of the Biogrid interactome, and as seed file, the seed genes.
+
+In **Table 8** we report the first 40 proteins, according to the rank of the DIAMOnD algorithm. In the attached folder, there you can find also the over-represented analysis for the proteins returned by DIAMOnD, joined with the seed genes. In **Table 9** and **Table 10** the Top-10 results for both analysis.
+
+\newpage
+
+| Rank | Entrez Gene ID |
+|-------|--------------|
+| 1 | 56122 |
+| 2 | 1198 |
+| 3 | 23500 |
+| 4 | 27350 |
+| 5 | 27316 |
+| 6 | 80742 |
+| 7 | 3190 |
+| 8 | 1153 |
+| 9 | 91746 |
+| 10 | 202559 |
+| 11 | 5935 |
+| 12 | 10656 |
+| 13 | 26121 |
+| 14 | 10657 |
+| 15 | 3178 |
+| 16 | 51067 |
+| 17 | 3276 |
+| 18 | 70439 |
+| 19 | 10236 |
+| 20 | 3183 |
+| 21 | 8175 |
+| 22 | 8452 |
+| 23 | 3609 |
+| 24 | 11338 |
+| 25 | 1660 |
+| 26 | 9782 |
+| 27 | 56257 |
+| 28 | 3608 |
+| 29 | 55832 |
+| 30 | 6625 |
+| 31 | 22913 |
+| 32 | 10492 |
+| 33 | 10949 |
+| 34 | 3192 |
+| 35 | 1655 |
+| 36 | 3575 |
+| 37 | 6428 |
+| 38 | 9775 |
+| 39 | 23363 |
+| 40 | 3187 |
+Table: Top-40 Genes according to DIAMOnD Algorithm
+
+
+
+| Pathway Name | Pathway p-value (corrected) |
+|:-------------------------------------------------------------------:|:---------------------------:|
+| poly(A) RNA binding | 1,4E-142 |
+| gene expression | 1,5E-115 |
+| viral transcription | 4,7E-111 |
+| translational termination | 2,5E-107 |
+| nuclear-transcribed mRNA catabolic process, nonsense-mediated decay | 1,7E-105 |
+| translational elongation | 1,8E-102 |
+| SRP-dependent cotranslational protein targeting to membrane | 1,3E-100 |
+| viral life cycle | 2,36E-96 |
+| translational initiation | 3,43E-93 |
+| RNA binding | 4,46E-91 |
+Table: Table: GO Over-Represented Analysis for Putative Disease Proteins
+
+| Pathway Name | Pathway p-value (corrected) |
+|:----------------------------------------------------------------------------:|:---------------------------:|
+| Eukaryotic Translation Termination | 1,29E-98 |
+| Peptide chain elongation | 1,29E-98 |
+| Viral mRNA Translation | 1,29E-98 |
+| Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC) | 3E-98 |
+| Nonsense Mediated Decay (NMD) enhanced by the Exon Junction Complex (EJC) | 2,04E-97 |
+| Nonsense-Mediated Decay (NMD) | 2,04E-97 |
+| Eukaryotic Translation Elongation | 1,16E-96 |
+| Formation of a pool of free 40S subunits | 1,31E-93 |
+| L13a-mediated translational silencing of Ceruloplasmin expression | 2,16E-91 |
+| GTP hydrolysis and joining of the 60S ribosomal subunit | 7,32E-89 |
+Table: Pathway Over-Represented Analysis for Putative Disease Proteins
+

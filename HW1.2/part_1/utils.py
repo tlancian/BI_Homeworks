@@ -15,6 +15,20 @@ def read_graph(file):
     
     return G
 
+def net_centralization(graph):
+    
+    deg = dict(graph.degree())
+    max_deg = max(deg.values())
+    
+    num = 0
+    
+    for elem in deg.values():
+        num += (max_deg-elem)
+    
+    n = len(deg)
+    
+    return num/((n-1)*(n-2))
+
 
 def graph_global_measures(graph, file, cc = False):
     
@@ -64,7 +78,7 @@ def graph_global_measures(graph, file, cc = False):
     except:
         radius = "Graph not connected"
         
-    centralization = None
+    centralization = net_centralization(graph)
     
     if cc:
         values = [nodes, edges, avg_sp, avg_dg, avg_clust, diam, radius, centralization]
@@ -79,6 +93,9 @@ def graph_global_measures(graph, file, cc = False):
     
     if cc:
         lcc_local_measures(graph).to_excel("results/lcc/"+file+"_lcc_local_measures.xlsx")
+
+
+
 
 
 def lcc_local_measures(graph):

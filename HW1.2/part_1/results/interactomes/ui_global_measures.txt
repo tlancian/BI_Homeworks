@@ -7,4 +7,4 @@ Average Degree	2.0972222222222223
 Average Clustering Coefficient	0.004667785917785918
 Network Diameter	Graph not connected
 Network Radius	Graph not connected
-Centralization	None
+Centralization	0.10141078433761361

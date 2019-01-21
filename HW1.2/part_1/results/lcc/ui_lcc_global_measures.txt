@@ -5,4 +5,4 @@ Average Degree	2.233128834355828
 Average Clustering Coefficient	0.008247376345535856
 Network Diameter	12
 Network Radius	7
-Centralization	None
+Centralization	0.17977915804002761
